@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:we_date/core/widget/streamify_button.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:we_date/core/widget/we_date.dart';
+import 'package:we_date/features/auth/screens/signup.dart';
 
 class Splash extends StatefulWidget {
   final String title;
   final String subtitle;
   final String imgURL;
-  const Splash({super.key, required this.title, required this.subtitle, required this.imgURL});
+  final LiquidController liquidController;
+  const Splash({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.imgURL,
+    required this.liquidController,
+  });
 
   @override
   State<Splash> createState() => _SplashState();
 }
 
 class _SplashState extends State<Splash> {
+  final swipePageLength = 2; // starts from 0
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +38,27 @@ class _SplashState extends State<Splash> {
                   widget.imgURL,
                   fit: BoxFit.cover,
                 ),
+              ),
+            ),
+            Positioned(
+              top: 35,
+              right: 20,
+              child: InkWell(
+                child: const Text(
+                  "SKIP",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onTap: () {
+                  // navigate to sign up and login
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const Signup()),
+                    (route) => true,
+                  );
+                },
               ),
             ),
           ]),
@@ -52,17 +84,24 @@ class _SplashState extends State<Splash> {
             ),
           ),
           const SizedBox(height: 35),
-          StreamifyButton(
+          WeDateButton(
             text: "NEXT",
-            onPressed: () {},
+            onPressed: () {
+              if (widget.liquidController.currentPage != swipePageLength) {
+                final nextPage = widget.liquidController.currentPage + 1;
+                widget.liquidController.animateToPage(page: nextPage);
+              } else {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const Signup()),
+                  (route) => true,
+                );
+              }
+            },
             backgroundColor: const Color.fromARGB(255, 142, 75, 171),
+            width: 150,
           )
         ],
       ),
     );
   }
 }
-
-// Color(0xFF03001C),
-//                                                 Color(0XFF00214F),
-//                                                 Color(0xFF03001C)
