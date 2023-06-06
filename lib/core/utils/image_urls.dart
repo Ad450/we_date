@@ -8,4 +8,6 @@ class ImageURLS {
       "https://media.npr.org/assets/img/2016/08/25/southside_still_mg_5225edit_custom-00adcfa854d6f048a74ef2b6d862cf5d37974ecb-s1100-c50.jpg";
   static const String signup =
       "https://hips.hearstapps.com/hmg-prod/images/at-home-date-ideas-book-club-1587500417.jpg";
+  static const String profile =
+      "https://thoughtcatalog.com/wp-content/uploads/2018/02/amy-treasure-66353.jpg?w=1200&h=800&crop=1";
 }
