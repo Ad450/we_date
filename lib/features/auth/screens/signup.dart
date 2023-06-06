@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:we_date/core/utils/image_urls.dart';
-import 'package:we_date/core/widget/we_date.dart';
+import "package:flutter/material.dart";
+import "package:we_date/core/utils/image_urls.dart";
+import "package:we_date/core/widget/we_date_button.dart";
 
 class Signup extends StatelessWidget {
   const Signup({super.key});
@@ -9,81 +8,149 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Stack(
-            children: [
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(children: [
               Image.network(
-                ImageURLS.authPage,
+                ImageURLS.signup,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
               ),
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.48,
+                top: 30,
                 right: 20,
                 left: 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      width: 300,
-                      child: Text(
-                        "Find new \nfriends nearby",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      "With millions of users all over the world, we \ngive you the ability to connect with people \nno matter where you are",
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    WeDateButton(
-                      text: "Log in",
-                      textFontSize: 20,
-                      textColor: const Color.fromARGB(255, 183, 61, 122),
-                      backgroundColor: Colors.white,
-                      onPressed: () {},
-                    ),
-                    const SizedBox(height: 5),
-                    WeDateButton(
-                      text: "Sign Up",
-                      textFontSize: 20,
-                      textColor: Colors.white,
-                      backgroundColor: const Color.fromARGB(255, 183, 61, 122),
-                      onPressed: () {},
-                    ),
-                    const SizedBox(height: 15),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 20),
-                        Text(
-                          "Log in with",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.grey[850]),
-                          textAlign: TextAlign.center,
-                        ),
-                        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          IconButton(onPressed: () {}, icon: const FaIcon(FontAwesomeIcons.google)),
-                          IconButton(onPressed: () {}, icon: const FaIcon(FontAwesomeIcons.facebook))
-                        ]),
-                      ],
-                    )
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: Column(
+                    children: [
+                      Form(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              "Create an account",
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          Container(
+                              height: 40,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.white.withOpacity(0.5), Colors.white.withOpacity(0.2)],
+                                  stops: const [0.0, 1.0],
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  hintText: "Username",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 10),
+                                ),
+                              )),
+                          const SizedBox(height: 10),
+                          Container(
+                              height: 40,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.white.withOpacity(0.5), Colors.white.withOpacity(0.2)],
+                                  stops: const [0.0, 1.0],
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: const InputDecoration(
+                                  hintText: "Email",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 10),
+                                ),
+                              )),
+                          const SizedBox(height: 10),
+                          Container(
+                              height: 40,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.white.withOpacity(0.5), Colors.white.withOpacity(0.2)],
+                                  stops: const [0.0, 1.0],
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                keyboardType: TextInputType.phone,
+                                decoration: const InputDecoration(
+                                  hintText: "Phone",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 10),
+                                ),
+                              )),
+                          const SizedBox(height: 10),
+                          Container(
+                              height: 40,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.white.withOpacity(0.5), Colors.white.withOpacity(0.2)],
+                                  stops: const [0.0, 1.0],
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                keyboardType: TextInputType.datetime,
+                                decoration: const InputDecoration(
+                                  hintText: "Date of birth (ie. DD/MM/YY)",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 10),
+                                ),
+                              )),
+                          const SizedBox(height: 10),
+                          Container(
+                              height: 40,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.white.withOpacity(0.5), Colors.white.withOpacity(0.2)],
+                                  stops: const [0.0, 1.0],
+                                ),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  hintText: "Password",
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 10),
+                                ),
+                              )),
+                          const SizedBox(height: 40),
+                          WeDateButton(
+                            text: "Continue",
+                            textFontSize: 20,
+                            textColor: Colors.white,
+                            backgroundColor: const Color.fromARGB(255, 183, 61, 122),
+                            onPressed: () {},
+                          ),
+                        ],
+                      )),
+                    ],
+                  ),
                 ),
               )
-            ],
-          ),
-        ],
+            ]),
+          ],
+        ),
       ),
     );
   }

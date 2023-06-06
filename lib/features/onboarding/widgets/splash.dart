@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:we_date/core/widget/we_date.dart';
-import 'package:we_date/features/auth/screens/signup.dart';
+import 'package:we_date/core/widget/we_date_button.dart';
+import 'package:we_date/features/auth/screens/auth_landing_page.dart';
 
 class Splash extends StatefulWidget {
   final String title;
@@ -55,7 +55,7 @@ class _SplashState extends State<Splash> {
                 onTap: () {
                   // navigate to sign up and login
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const Signup()),
+                    MaterialPageRoute(builder: (context) => const AuthLandingPage()),
                     (route) => true,
                   );
                 },
@@ -92,7 +92,7 @@ class _SplashState extends State<Splash> {
                 widget.liquidController.animateToPage(page: nextPage);
               } else {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const Signup()),
+                  MaterialPageRoute(builder: (context) => const AuthLandingPage()),
                   (route) => true,
                 );
               }
