@@ -37,8 +37,11 @@ class WeDateTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
-          icon: showLeadingIcon != null ? (showLeadingIcon! ? icon : null) : null,
+          contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+          hintStyle: const TextStyle(
+            color: Colors.white,
+          ),
+          prefixIcon: showLeadingIcon != null ? (showLeadingIcon! ? icon : null) : null,
         ),
       ),
     );
