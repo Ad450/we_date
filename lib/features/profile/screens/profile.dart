@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
+import "package:we_date/core/utils/functions.dart";
 import "package:we_date/core/utils/image_urls.dart";
 import "package:we_date/core/widget/textFormField.dart";
 import "package:we_date/core/widget/we_date_button.dart";
+import "package:we_date/features/profile/screens/gender.dart";
 import "package:we_date/features/profile/widgets/picture_avatar.dart";
 
 class Profile extends StatefulWidget {
@@ -14,14 +16,6 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
-
-  double getVisibleScreenWidth(BuildContext context) {
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final double screenWidth = mediaQueryData.size.width;
-    final EdgeInsets padding = mediaQueryData.padding;
-    final double visibleScreenWidth = screenWidth - padding.left - padding.right;
-    return visibleScreenWidth;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +98,10 @@ class _ProfileState extends State<Profile> {
                               onPressed: () {
                                 // Navigator.pushAndRemoveUntil(
                                 //   context,
-                                //   MaterialPageRoute(builder: (context) => const Profile()),
+                                //   MaterialPageRoute(builder: (context) => const GenderScreen()),
                                 //   (route) => false,
                                 // );
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const GenderScreen()));
                               },
                             ),
                           ],

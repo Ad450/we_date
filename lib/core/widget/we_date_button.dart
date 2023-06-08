@@ -11,25 +11,28 @@ class WeDateButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final double? width;
+  final double? height;
 
-  const WeDateButton({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-    this.textPaddingBottom,
-    this.textPaddingLeft,
-    this.textPaddingRight,
-    this.textPaddingTop,
-    this.textFontSize,
-    this.backgroundColor,
-    this.textColor,
-    this.width,
-  }) : super(key: key);
+  const WeDateButton(
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      this.textPaddingBottom,
+      this.textPaddingLeft,
+      this.textPaddingRight,
+      this.textPaddingTop,
+      this.textFontSize,
+      this.backgroundColor,
+      this.textColor,
+      this.width,
+      this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? MediaQuery.of(context).size.width,
+      height: height,
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(backgroundColor ?? Colors.black),
