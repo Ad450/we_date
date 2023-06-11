@@ -34,7 +34,7 @@ class _SplashState extends State<Splash> {
               child: SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * 0.62,
-                child: Image.network(
+                child: Image.asset(
                   widget.imgURL,
                   fit: BoxFit.cover,
                 ),

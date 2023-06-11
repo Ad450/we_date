@@ -14,7 +14,7 @@ class AuthLandingPage extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.network(
+              Image.asset(
                 ImageURLS.authLandingPage,
                 fit: BoxFit.cover,
                 width: double.infinity,

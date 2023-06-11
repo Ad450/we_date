@@ -43,7 +43,7 @@ class SocialPost extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: const DecorationImage(
-                    image: NetworkImage(ImageURLS.profile),
+                    image: AssetImage(ImageURLS.profile),
                     fit: BoxFit.cover,
                   ),
                 ),

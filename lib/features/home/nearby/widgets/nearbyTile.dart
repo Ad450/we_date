@@ -12,7 +12,7 @@ class NearbyTile extends StatelessWidget {
       height: 250,
       decoration: BoxDecoration(
         image: const DecorationImage(
-          image: NetworkImage(ImageURLS.profile),
+          image: AssetImage(ImageURLS.profile),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(20),

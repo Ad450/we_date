@@ -25,7 +25,7 @@ class _ProfileState extends State<Profile> {
           children: [
             Stack(
               children: [
-                Image.network(
+                Image.asset(
                   ImageURLS.profile,
                   fit: BoxFit.cover,
                   width: double.infinity,

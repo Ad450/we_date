@@ -13,7 +13,7 @@ class ProfileAvatar extends StatelessWidget {
           width: width ?? 40,
           height: 40,
           decoration: const ShapeDecoration(
-            image: DecorationImage(image: NetworkImage(ImageURLS.authLandingPage), fit: BoxFit.cover),
+            image: DecorationImage(image: AssetImage(ImageURLS.authLandingPage), fit: BoxFit.cover),
             shape: CircleBorder(
                 side: BorderSide(
               color: Colors.white,

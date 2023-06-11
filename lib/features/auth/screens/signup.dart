@@ -25,7 +25,7 @@ class _SignupState extends State<Signup> {
         child: Column(
           children: [
             Stack(children: [
-              Image.network(
+              Image.asset(
                 ImageURLS.signup,
                 fit: BoxFit.cover,
                 width: double.infinity,

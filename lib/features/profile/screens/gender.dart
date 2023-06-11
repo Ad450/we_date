@@ -22,7 +22,7 @@ class _GenderScreenState extends State<GenderScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
             image: DecorationImage(
-          image: NetworkImage(
+          image: AssetImage(
             ImageURLS.profile,
           ),
           fit: BoxFit.cover,

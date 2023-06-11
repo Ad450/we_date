@@ -1,13 +1,8 @@
 class ImageURLS {
-  static const String swipePage1 =
-      "https://img.washingtonpost.com/rf/image_960w/2010-2019/WashingtonPost/2016/12/13/Interactivity/Images/iStock-483301694.jpg";
-  static const String swipePage2 =
-      "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1676481910.jpg?crop=0.668xw:1.00xh;0.153xw,0&resize=360:*";
-  static const String swipePage3 = "https://www.singleblackmale.org/wp-content/uploads/2014/03/couple-on-date.jpg";
-  static const String authLandingPage =
-      "https://media.npr.org/assets/img/2016/08/25/southside_still_mg_5225edit_custom-00adcfa854d6f048a74ef2b6d862cf5d37974ecb-s1100-c50.jpg";
-  static const String signup =
-      "https://hips.hearstapps.com/hmg-prod/images/at-home-date-ideas-book-club-1587500417.jpg";
-  static const String profile =
-      "https://thoughtcatalog.com/wp-content/uploads/2018/02/amy-treasure-66353.jpg?w=1200&h=800&crop=1";
+  static const String swipePage1 = "assets/swipe_1.webp";
+  static const String swipePage2 = "assets/swipe_2.avif";
+  static const String swipePage3 = "assets/swipe_3.webp";
+  static const String authLandingPage = "assets/dating_1.webp";
+  static const String signup = "assets/dating_2.jpg";
+  static const String profile = "assets/profile_2.jpg";
 }

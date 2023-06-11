@@ -47,7 +47,7 @@ class _NearbyScreenState extends State<NearbyScreen> {
                   width: 60,
                   height: 40,
                   decoration: const ShapeDecoration(
-                    image: DecorationImage(image: NetworkImage(ImageURLS.profile), fit: BoxFit.cover),
+                    image: DecorationImage(image: AssetImage(ImageURLS.profile), fit: BoxFit.cover),
                     shape: CircleBorder(
                         side: BorderSide(
                       color: Colors.white,
