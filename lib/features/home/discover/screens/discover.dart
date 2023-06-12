@@ -5,16 +5,16 @@ import 'package:photo_card_swiper/photo_card_swiper.dart';
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 import 'package:stacked_list_carousel/stacked_list_carousel.dart';
 import 'package:swipe_deck/swipe_deck.dart';
-import 'package:we_date/features/home/favorites/widgets/discover_cards.dart';
+import 'package:we_date/features/home/discover/widgets/discover_cards.dart';
 
-class Favorites extends StatefulWidget {
-  const Favorites({Key? key}) : super(key: key);
+class Discover extends StatefulWidget {
+  const Discover({Key? key}) : super(key: key);
 
   @override
-  _FavoritesState createState() => _FavoritesState();
+  _DiscoverState createState() => _DiscoverState();
 }
 
-class _FavoritesState extends State<Favorites> {
+class _DiscoverState extends State<Discover> {
   List imgPaths = [
     "assets/swipe_1.webp",
     "assets/swipe_2.avif",
@@ -50,7 +50,7 @@ class _FavoritesState extends State<Favorites> {
           ),
           const SizedBox(height: 20),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: MediaQuery.of(context).size.height * 0.75,
             child: AppinioSwiper(
               padding: EdgeInsets.zero,
               cardsCount: imgPaths.length,
