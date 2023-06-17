@@ -1,5 +1,8 @@
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:we_date/features/home/discover/state/discover_bloc.dart";
+import "package:we_date/features/home/discover/state/discover_events.dart";
 
 class DiscoverCard extends StatelessWidget {
   final String url;
@@ -13,10 +16,15 @@ class DiscoverCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Stack(children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(url), fit: BoxFit.cover),
+          GestureDetector(
+            onTap: (){
+              context.read<DiscoverBloc>().add(ShowDiscoverDetails(url));
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.7,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(url), fit: BoxFit.cover),
+              ),
             ),
           ),
           Align(
@@ -96,3 +104,5 @@ class DiscoverCard extends StatelessWidget {
     );
   }
 }
+
+
