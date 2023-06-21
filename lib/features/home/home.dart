@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import 'package:we_date/features/home/discover/screens/discover.dart';
+import "package:we_date/features/home/favorites/screens/favorites.dart";
 import "package:we_date/features/home/nearby/screens/nearby.dart";
 
 class HomeScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: <Widget>[
           const NearbyScreen(),
           const Discover(),
-          Container(height: double.infinity, color: Colors.transparent),
+          const Favorites(),
           Container(height: double.infinity, color: Colors.transparent),
           Container(height: double.infinity, color: Colors.transparent)
         ][selectedIndex],
