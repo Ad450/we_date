@@ -4,7 +4,7 @@ import "package:we_date/core/utils/image_urls.dart";
 import "package:we_date/core/widget/textFormField.dart";
 import "package:we_date/core/widget/we_date_button.dart";
 import "package:we_date/features/profile/screens/gender.dart";
-import "package:we_date/features/profile/widgets/picture_avatar.dart";
+import 'package:we_date/features/profile/screens/widgets/picture_avatar.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -64,7 +64,8 @@ class _ProfileState extends State<Profile> {
                 Positioned(
                   left: (getVisibleScreenWidth(context) - 160) / 2,
                   top: 160,
-                  child: const Align(alignment: Alignment.center, child: PictureAvatar()),
+                  child: const Align(
+                      alignment: Alignment.center, child: PictureAvatar()),
                 ),
                 Positioned(
                   top: MediaQuery.of(context).size.height * 0.56,
@@ -94,14 +95,19 @@ class _ProfileState extends State<Profile> {
                               text: "Confirm",
                               textFontSize: 20,
                               textColor: Colors.white,
-                              backgroundColor: const Color.fromARGB(255, 183, 61, 122),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 183, 61, 122),
                               onPressed: () {
                                 // Navigator.pushAndRemoveUntil(
                                 //   context,
                                 //   MaterialPageRoute(builder: (context) => const GenderScreen()),
                                 //   (route) => false,
                                 // );
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const GenderScreen()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const GenderScreen()));
                               },
                             ),
                           ],

@@ -15,14 +15,14 @@ abstract class DatabaseClient {
   Future<dynamic> get<T extends Collections>(T collection);
 
   Future<void> updateByUniqueIdentifier<T extends Collections>(
-    T collection,
-    String identifierValue,
-    String identifierkey,
+    T collection, {
+    required String identifierValue,
+    required String identifierkey,
     dynamic data,
-  );
+  });
 }
 
-enum Collections { user }
+enum Collections { user, profile }
 
 class DatabaseClientImpl implements DatabaseClient {
   late FirebaseFirestore firestore;
@@ -69,11 +69,11 @@ class DatabaseClientImpl implements DatabaseClient {
 
   @override
   Future<void> updateByUniqueIdentifier<T extends Collections>(
-    T collection,
-    String identifierValue,
-    String identifierkey,
+    T collection, {
+    required String identifierValue,
+    required String identifierkey,
     dynamic data,
-  ) async {
+  }) async {
     try {
       final collectionRef = await firestore.collection(collection.name);
       final docs = await collectionRef

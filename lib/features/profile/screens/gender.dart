@@ -1,9 +1,8 @@
 import "package:flutter/material.dart";
-import "package:we_date/core/utils/functions.dart";
 import "package:we_date/core/utils/image_urls.dart";
 import "package:we_date/core/widget/we_date_button.dart";
 import "package:we_date/features/home/home.dart";
-import "package:we_date/features/profile/widgets/selectable_container.dart";
+import "package:we_date/features/profile/screens/widgets/selectable_container.dart";
 
 class GenderScreen extends StatefulWidget {
   const GenderScreen({super.key});
@@ -14,6 +13,7 @@ class GenderScreen extends StatefulWidget {
 
 class _GenderScreenState extends State<GenderScreen> {
   var selectedGender = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +71,9 @@ class _GenderScreenState extends State<GenderScreen> {
                         selectedGender = "Woman";
                       });
                     },
-                    child: SelectableContainer(selectText: "Woman", selected: selectedGender == "Woman")),
+                    child: SelectableContainer(
+                        selectText: "Woman",
+                        selected: selectedGender == "Woman")),
                 const SizedBox(height: 10),
                 GestureDetector(
                     onTap: () {
@@ -79,7 +81,8 @@ class _GenderScreenState extends State<GenderScreen> {
                         selectedGender = "Man";
                       });
                     },
-                    child: SelectableContainer(selectText: "Man", selected: selectedGender == "Man")),
+                    child: SelectableContainer(
+                        selectText: "Man", selected: selectedGender == "Man")),
                 const SizedBox(height: 10),
                 GestureDetector(
                     onTap: () {
@@ -87,7 +90,9 @@ class _GenderScreenState extends State<GenderScreen> {
                         selectedGender = "Other";
                       });
                     },
-                    child: SelectableContainer(selectText: "Other", selected: selectedGender == "Other")),
+                    child: SelectableContainer(
+                        selectText: "Other",
+                        selected: selectedGender == "Other")),
                 const SizedBox(height: 180),
                 WeDateButton(
                   text: "Continue",
@@ -97,7 +102,8 @@ class _GenderScreenState extends State<GenderScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
                     );
                   },
                 ),
