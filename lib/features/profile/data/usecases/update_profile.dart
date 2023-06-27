@@ -3,7 +3,7 @@ import 'package:we_date/core/utils/classes.dart';
 import 'package:we_date/core/utils/errors.dart';
 import 'package:we_date/features/profile/data/repository/profile_repository.dart';
 
-class UpdateProfile implements Usecases<VoidType, UpdateProfileParam> {
+class UpdateProfile implements Usecase<VoidType, UpdateProfileParam> {
   final ProfileRepository _profileRepository;
 
   UpdateProfile(this._profileRepository);

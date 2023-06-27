@@ -4,8 +4,9 @@ import 'package:we_date/core/utils/classes.dart';
 import 'package:we_date/core/utils/errors.dart';
 import 'package:we_date/features/auth/data/repository/authentication_repository.dart';
 
-class SignupOrLoginWithGoogle implements Usecases<UserModel, NoParam> {
+class SignupOrLoginWithGoogle implements Usecase<UserModel, NoParam> {
   final AuthenticationRepository _authenticationRepo;
+
   SignupOrLoginWithGoogle(this._authenticationRepo);
 
   @override

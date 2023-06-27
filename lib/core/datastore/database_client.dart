@@ -1,18 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:we_date/core/utils/errors.dart';
 
-import '../utils/strings.dart';
+import '../utils/error_messages.dart';
 
 abstract class DatabaseClient {
-  Future<void> save<T extends Collections>(T collection, dynamic data);
+  Future<String> save<T extends Collections>(T collection, dynamic data);
 
-  Future<dynamic> getByIdentifier<T extends Collections>(
+  Future<QueryDocumentSnapshot<Map<String, dynamic>>>
+      getByIdentifier<T extends Collections>(
     T collection,
     String identifierkey,
     String identifierValue,
   );
 
-  Future<dynamic> get<T extends Collections>(T collection);
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      get<T extends Collections>(T collection);
 
   Future<void> updateByUniqueIdentifier<T extends Collections>(
     T collection, {
@@ -22,7 +24,7 @@ abstract class DatabaseClient {
   });
 }
 
-enum Collections { user, profile }
+enum Collections { user, profile, story }
 
 class DatabaseClientImpl implements DatabaseClient {
   late FirebaseFirestore firestore;
@@ -32,16 +34,20 @@ class DatabaseClientImpl implements DatabaseClient {
   }
 
   @override
-  Future<void> save<T extends Collections>(T collection, data) async {
+  Future<String> save<T extends Collections>(T collection, data) async {
     try {
-      await firestore.collection(collection.name).add(data);
+      return await firestore
+          .collection(collection.name)
+          .add(data)
+          .then((value) => value.id);
     } on Error catch (e) {
       throw DbFailure(e.toString());
     }
   }
 
   @override
-  Future<dynamic> get<T extends Collections>(T collection) async {
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      get<T extends Collections>(T collection) async {
     try {
       final result = await firestore
           .collection(collection.name)
@@ -54,8 +60,9 @@ class DatabaseClientImpl implements DatabaseClient {
   }
 
   @override
-  Future getByIdentifier<T extends Collections>(
-      T collection, String identifierkey, String identifierValue) async {
+  Future<QueryDocumentSnapshot<Map<String, dynamic>>>
+      getByIdentifier<T extends Collections>(
+          T collection, String identifierkey, String identifierValue) async {
     try {
       final collectionRef = await firestore.collection(collection.name);
       return await collectionRef

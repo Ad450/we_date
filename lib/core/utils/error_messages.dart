@@ -3,3 +3,4 @@ const String GOOGLE_SIGNIN_FAILED = "Failed to sign in user";
 const String FACEBOOK_SIGNIN_FAILED = "Facebook sign in failed";
 const String GENERIC_NETWORK_FAILURE = "Generic network Failure";
 const String UPDATE_PROFILE_FAILURE = "Update profile failed";
+const String STORY_UPLOAD_FAILURE = "Failed to upload story";

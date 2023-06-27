@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_date/core/utils/errors.dart';
-import 'package:we_date/core/utils/strings.dart';
+import 'package:we_date/core/utils/error_messages.dart';
 
 double getVisibleScreenWidth(BuildContext context) {
   final MediaQueryData mediaQueryData = MediaQuery.of(context);

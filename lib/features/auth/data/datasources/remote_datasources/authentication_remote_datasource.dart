@@ -5,7 +5,7 @@ import 'package:we_date/core/datastore/database_client.dart';
 import 'package:we_date/core/models/profile_model.dart';
 import 'package:we_date/core/models/user_model.dart';
 import 'package:we_date/core/utils/errors.dart';
-import 'package:we_date/core/utils/strings.dart';
+import 'package:we_date/core/utils/error_messages.dart';
 
 abstract class AuthenticationRemoteDatasource {
   Future<UserModel> signupOrLoginWithGoogle();
@@ -57,11 +57,14 @@ class AuthenticationRemoteDatasourceImpl
       );
       final userCredentials =
           await FirebaseAuth.instance.signInWithCredential(googleCredentials);
+      final profile = ProfileModel(gender: "", uid: userCredentials!.user!.uid);
       final user = UserModel(
         uid: userCredentials!.user!.uid,
         email: userCredentials!.user!.email!,
       );
+
       await _db.save(Collections.user, user.toJson());
+      await _db.save(Collections.profile, profile.toJson());
       return user;
     } on DbFailure catch (e) {
       throw ApiFailure(e.message);
