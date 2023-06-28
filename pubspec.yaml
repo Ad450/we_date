@@ -33,6 +33,7 @@ dependencies:
   flutter_facebook_auth: '^3.5.0'
   get_it: ^7.6.0
   image_picker: ^1.0.0
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:

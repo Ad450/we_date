@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:location/location.dart';
 import 'package:we_date/core/datastore/database_client.dart';
 import 'package:we_date/features/auth/data/datasources/remote_datasources/authentication_remote_datasource.dart';
 import 'package:we_date/features/auth/data/repository/authentication_repository.dart';
@@ -29,5 +30,6 @@ class Injector {
     getIt.registerLazySingleton<SignupOrLoginWithFacebook>(
       () => SignupOrLoginWithFacebook(getIt.get<AuthenticationRepository>()),
     );
+    getIt.registerLazySingleton<Location>(() => Location());
   }
 }

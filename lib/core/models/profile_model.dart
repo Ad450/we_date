@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:we_date/core/models/location_model.dart';
 
 part 'profile_model.freezed.dart';
 
@@ -9,6 +10,7 @@ abstract class ProfileModel with _$ProfileModel {
   factory ProfileModel({
     required String uid,
     required String gender,
+    required LocationModel? location,
     String? firstName,
     String? lastName,
     String? profileImage,

@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:we_date/core/datastore/database_client.dart';
 import 'package:we_date/core/utils/errors.dart';
 import 'package:we_date/core/utils/error_messages.dart';

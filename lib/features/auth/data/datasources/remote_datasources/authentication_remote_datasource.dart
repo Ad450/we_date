@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:location/location.dart';
 import 'package:we_date/core/datastore/database_client.dart';
+import 'package:we_date/core/di/configure_dependencies.dart';
 import 'package:we_date/core/models/profile_model.dart';
 import 'package:we_date/core/models/user_model.dart';
 import 'package:we_date/core/utils/errors.dart';
 import 'package:we_date/core/utils/error_messages.dart';
+import 'package:we_date/core/utils/functions.dart';
 
 abstract class AuthenticationRemoteDatasource {
   Future<UserModel> signupOrLoginWithGoogle();
@@ -27,8 +30,10 @@ class AuthenticationRemoteDatasourceImpl
           FacebookAuthProvider.credential(loginResult.accessToken!.token);
       final userCredentials = await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential);
-      // empty profile is created for a new user
-      final profile = ProfileModel(gender: "", uid: userCredentials!.user!.uid);
+
+      final location = await getLocation(Injector.getIt.get<Location>());
+      final profile = ProfileModel(
+          gender: "", uid: userCredentials!.user!.uid, location: location);
       final user = UserModel(
         uid: userCredentials!.user!.uid,
         email: userCredentials!.user!.email!,
@@ -57,7 +62,9 @@ class AuthenticationRemoteDatasourceImpl
       );
       final userCredentials =
           await FirebaseAuth.instance.signInWithCredential(googleCredentials);
-      final profile = ProfileModel(gender: "", uid: userCredentials!.user!.uid);
+      final location = await getLocation(Injector.getIt.get<Location>());
+      final profile = ProfileModel(
+          gender: "", uid: userCredentials!.user!.uid, location: location);
       final user = UserModel(
         uid: userCredentials!.user!.uid,
         email: userCredentials!.user!.email!,
