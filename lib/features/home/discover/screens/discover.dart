@@ -1,15 +1,10 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_card_swiper/models/photo_card.dart';
-import 'package:photo_card_swiper/photo_card_swiper.dart';
-import 'package:stacked_card_carousel/stacked_card_carousel.dart';
-import 'package:stacked_list_carousel/stacked_list_carousel.dart';
-import 'package:swipe_deck/swipe_deck.dart';
+import 'package:we_date/features/home/discover/screens/widgets/discover_details.dart';
 import 'package:we_date/features/home/discover/state/discover_bloc.dart';
 import 'package:we_date/features/home/discover/state/discover_state.dart';
-import 'package:we_date/features/home/discover/widgets/discover_cards.dart';
-import 'package:we_date/features/home/discover/widgets/discover_details.dart';
+import 'package:we_date/features/home/discover/screens/widgets/discover_cards.dart';
 
 class Discover extends StatefulWidget {
   const Discover({Key? key}) : super(key: key);

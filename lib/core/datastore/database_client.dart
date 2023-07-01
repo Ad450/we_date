@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:we_date/core/models/location_model.dart';
 import 'package:we_date/core/utils/errors.dart';
 
 import '../utils/error_messages.dart';
@@ -6,15 +7,13 @@ import '../utils/error_messages.dart';
 abstract class DatabaseClient {
   Future<String> save<T extends Collections>(T collection, dynamic data);
 
-  Future<QueryDocumentSnapshot<Map<String, dynamic>>>
-      getByIdentifier<T extends Collections>(
+  Future<QueryDocumentSnapshot<Map<String, dynamic>>> getByIdentifier<T extends Collections>(
     T collection,
     String identifierkey,
     String identifierValue,
   );
 
-  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
-      get<T extends Collections>(T collection);
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> get<T extends Collections>(T collection);
 
   Future<void> updateByUniqueIdentifier<T extends Collections>(
     T collection, {
@@ -22,37 +21,40 @@ abstract class DatabaseClient {
     required String identifierkey,
     dynamic data,
   });
+
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> findByMultipleQueryParameters<T extends Collections>(
+    Map<String, dynamic> queryParams,
+    T collection,
+  );
+
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getDiscoveredProfiles<T extends Collections>(
+    LocationModel? location, {
+    required T collection,
+    required preferredAge,
+    required preferredHeight,
+  });
 }
 
-enum Collections { user, profile, story }
+enum Collections { user, profile, story, preferences }
 
 class DatabaseClientImpl implements DatabaseClient {
-  late FirebaseFirestore firestore;
+  final FirebaseFirestore firestore;
 
-  DatabaseClientImpl() {
-    firestore = FirebaseFirestore.instance;
-  }
+  DatabaseClientImpl(this.firestore);
 
   @override
   Future<String> save<T extends Collections>(T collection, data) async {
     try {
-      return await firestore
-          .collection(collection.name)
-          .add(data)
-          .then((value) => value.id);
+      return await firestore.collection(collection.name).add(data).then((value) => value.id);
     } on Error catch (e) {
       throw DbFailure(e.toString());
     }
   }
 
   @override
-  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
-      get<T extends Collections>(T collection) async {
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> get<T extends Collections>(T collection) async {
     try {
-      final result = await firestore
-          .collection(collection.name)
-          .get()
-          .then((snapshots) => snapshots.docs);
+      final result = await firestore.collection(collection.name).get().then((snapshots) => snapshots.docs);
       return result;
     } on Error catch (e) {
       throw DbFailure(e.toString());
@@ -60,9 +62,8 @@ class DatabaseClientImpl implements DatabaseClient {
   }
 
   @override
-  Future<QueryDocumentSnapshot<Map<String, dynamic>>>
-      getByIdentifier<T extends Collections>(
-          T collection, String identifierkey, String identifierValue) async {
+  Future<QueryDocumentSnapshot<Map<String, dynamic>>> getByIdentifier<T extends Collections>(
+      T collection, String identifierkey, String identifierValue) async {
     try {
       final collectionRef = await firestore.collection(collection.name);
       return await collectionRef
@@ -83,15 +84,64 @@ class DatabaseClientImpl implements DatabaseClient {
   }) async {
     try {
       final collectionRef = await firestore.collection(collection.name);
-      final docs = await collectionRef
-          .where(identifierkey, isEqualTo: identifierValue)
-          .get()
-          .then((snapshot) => snapshot.docs);
+      final docs =
+          await collectionRef.where(identifierkey, isEqualTo: identifierValue).get().then((snapshot) => snapshot.docs);
       final doc = docs.first;
       if (!doc.exists) {
         throw Exception(OBJECT_DOES_NOT_EXISTS);
       }
       await collectionRef.doc(doc.id).update(data);
+    } catch (e) {
+      throw DbFailure(e.toString());
+    }
+  }
+
+  @override
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> findByMultipleQueryParameters<T extends Collections>(
+    Map<String, dynamic> queryParams,
+    T collection,
+  ) async {
+    try {
+      final collectionRef = await firestore.collection(collection.name);
+      late Query<Map<String, dynamic>> query;
+
+      queryParams.forEach((key, value) async {
+        query = collectionRef.where(key, isEqualTo: value);
+      });
+      final docs = await query.get().then((snapshot) => snapshot.docs);
+      return docs;
+    } catch (e) {
+      throw DbFailure(e.toString());
+    }
+  }
+
+  /// This function returns all profiles withing the range
+  /// 500meters around a user. In this case 0.007
+  @override
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getDiscoveredProfiles<T extends Collections>(
+    LocationModel? location, {
+    required T collection,
+    required preferredAge,
+    required preferredHeight,
+  }) async {
+    if (location == null || location.lat == null || location.long == null) {
+      throw DbFailure(LOCATION_CANT_BE_NULL);
+    }
+
+    if (preferredHeight == null || preferredAge == null) {
+      throw DbFailure(PREFERED_AGE_REQUIRED);
+    }
+
+    try {
+      final collectionRef = await firestore.collection(collection.name); // Collection is profile always
+      final query = await collectionRef
+          .where("height", isLessThanOrEqualTo: int.parse(preferredHeight + 1))
+          .where("age", isLessThanOrEqualTo: int.parse(preferredAge + 2))
+          .where('location.latitude', isGreaterThanOrEqualTo: location.lat)
+          .where('location.latitude', isLessThanOrEqualTo: location.lat! + 0.007)
+          .where('location.longitude', isGreaterThanOrEqualTo: location.long)
+          .where('location.longitude', isLessThanOrEqualTo: location.long! + 0.007);
+      return query.get().then((snapshot) => snapshot.docs);
     } catch (e) {
       throw DbFailure(e.toString());
     }

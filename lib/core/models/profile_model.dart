@@ -15,6 +15,12 @@ abstract class ProfileModel with _$ProfileModel {
     String? lastName,
     String? profileImage,
     String? numberOfProfileImages,
+    String? country,
+    String? religion,
+    String? height,
+    String? age,
+    String? occupation,
+    String? education,
   }) = _ProfileModel;
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) =>

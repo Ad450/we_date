@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:location/location.dart';
 import 'package:we_date/core/datastore/database_client.dart';
@@ -16,13 +17,12 @@ class Injector {
 
   static void registerDependencies() {
     _initializeGetIt();
-    getIt.registerLazySingleton<DatabaseClient>(() => DatabaseClientImpl());
+    getIt.registerLazySingleton<DatabaseClient>(() => DatabaseClientImpl(FirebaseFirestore.instance));
     getIt.registerLazySingleton<AuthenticationRemoteDatasource>(
       () => AuthenticationRemoteDatasourceImpl(getIt.get<DatabaseClient>()),
     );
     getIt.registerLazySingleton<AuthenticationRepository>(
-      () => AuthenticationRepositoryImpl(
-          getIt.get<AuthenticationRemoteDatasource>()),
+      () => AuthenticationRepositoryImpl(getIt.get<AuthenticationRemoteDatasource>()),
     );
     getIt.registerLazySingleton<SignupOrLoginWithGoogle>(
       () => SignupOrLoginWithGoogle(getIt.get<AuthenticationRepository>()),

@@ -61,16 +61,22 @@ Future<LocationModel?> getLocation(Location location) async {
   }
   final userLocation = await location.getLocation();
   return LocationModel(
-      lat: userLocation.latitude, long: userLocation.longitude);
+    lat: userLocation.latitude,
+    long: userLocation.longitude,
+  );
 }
 
-Future<void> onLocationChange(Location location, DatabaseClient db) async {
-  final user = FirebaseAuth.instance.currentUser;
-  if (user == null) {
-    return;
-  }
+Future<void> updateProfileOnLocationChange(
+  Location location,
+  DatabaseClient db,
+) async {
   final permissionGranted = await hasPermission(location);
   if (!permissionGranted) {
+    return;
+  }
+
+  final user = FirebaseAuth.instance.currentUser;
+  if (user == null) {
     return;
   }
 
@@ -80,7 +86,7 @@ Future<void> onLocationChange(Location location, DatabaseClient db) async {
   location.onLocationChanged.listen((event) {
     if (profile.location != null && profile.location != null) {
       if (event.latitude != null && event.longitude != null) {
-        final distance = _calculateDistance(
+        final distance = calculateDistance(
           oldLat: profile.location!.lat!,
           oldLong: profile.location!.long!,
           newLat: event.latitude!,
@@ -88,8 +94,7 @@ Future<void> onLocationChange(Location location, DatabaseClient db) async {
         );
         if (distance > distanceChangeThreshold) {
           profile.copyWith(
-            location:
-                LocationModel(lat: event.latitude!, long: event.longitude!),
+            location: LocationModel(lat: event.latitude!, long: event.longitude!),
           );
           db.updateByUniqueIdentifier(Collections.profile,
               identifierValue: user.uid, identifierkey: "uid", data: profile);
@@ -99,17 +104,19 @@ Future<void> onLocationChange(Location location, DatabaseClient db) async {
   });
 }
 
-double _calculateDistance({
-  required double oldLat,
-  required double oldLong,
-  required double newLat,
-  required double newLong,
+double calculateDistance({
+  required double? oldLat,
+  required double? oldLong,
+  required double? newLat,
+  required double? newLong,
 }) {
+  if (oldLat == null || oldLong == null || newLat == null || newLong == null) {
+    throw ApiFailure(ENABLE_LOCATION_SERVICE);
+  }
+
   const p = 0.017453292519943295; // math.pi / 180
   const c = math.cos;
-  final a = 0.5 -
-      c((newLat - oldLat) * p) / 2 +
-      c(oldLat * p) * c(newLat * p) * (1 - c((newLong - oldLong) * p)) / 2;
+  final a = 0.5 - c((newLat - oldLat) * p) / 2 + c(oldLat * p) * c(newLat * p) * (1 - c((newLong - oldLong) * p)) / 2;
 
   return 12742 * math.asin(math.sqrt(a)); // 2 * R; R = 6371 km
 }

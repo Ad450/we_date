@@ -16,8 +16,7 @@ abstract class AuthenticationRemoteDatasource {
   Future<UserModel> signupOrLoginWithFacebook();
 }
 
-class AuthenticationRemoteDatasourceImpl
-    implements AuthenticationRemoteDatasource {
+class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasource {
   final DatabaseClient _db;
 
   AuthenticationRemoteDatasourceImpl(this._db);
@@ -26,17 +25,14 @@ class AuthenticationRemoteDatasourceImpl
   Future<UserModel> signupOrLoginWithFacebook() async {
     try {
       final LoginResult loginResult = await FacebookAuth.instance.login();
-      final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.token);
-      final userCredentials = await FirebaseAuth.instance
-          .signInWithCredential(facebookAuthCredential);
+      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      final userCredentials = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
 
       final location = await getLocation(Injector.getIt.get<Location>());
-      final profile = ProfileModel(
-          gender: "", uid: userCredentials!.user!.uid, location: location);
+      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location);
       final user = UserModel(
-        uid: userCredentials!.user!.uid,
-        email: userCredentials!.user!.email!,
+        uid: userCredentials.user!.uid,
+        email: userCredentials.user!.email!,
       );
       await _db.save(Collections.user, user.toJson());
       await _db.save(Collections.profile, profile.toJson());
@@ -53,21 +49,18 @@ class AuthenticationRemoteDatasourceImpl
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
       final googleCredentials = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      final userCredentials =
-          await FirebaseAuth.instance.signInWithCredential(googleCredentials);
+      final userCredentials = await FirebaseAuth.instance.signInWithCredential(googleCredentials);
       final location = await getLocation(Injector.getIt.get<Location>());
-      final profile = ProfileModel(
-          gender: "", uid: userCredentials!.user!.uid, location: location);
+      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location);
       final user = UserModel(
-        uid: userCredentials!.user!.uid,
-        email: userCredentials!.user!.email!,
+        uid: userCredentials.user!.uid,
+        email: userCredentials.user!.email!,
       );
 
       await _db.save(Collections.user, user.toJson());
