@@ -13,8 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var selectedIndex =
-      0; // set to the first widget and item in the navigationBar
+  var selectedIndex = 0; // set to the first widget and item in the navigationBar
 
   void _onNavigationBarItemSelect(int newIndex) {
     setState(() {
@@ -42,23 +41,17 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(width: 2, color: Colors.black12)),
+              borderRadius: BorderRadius.circular(30), border: Border.all(width: 2, color: Colors.black12)),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: BottomNavigationBar(
               currentIndex: selectedIndex,
               items: const [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.circle), label: "Nearby"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.content_copy), label: "Discover"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.star), label: "Favorites"),
-                BottomNavigationBarItem(
-                    icon: FaIcon(FontAwesomeIcons.message), label: "Message"),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.telegram_outlined), label: "Profile"),
+                BottomNavigationBarItem(icon: Icon(Icons.circle), label: "Nearby"),
+                BottomNavigationBarItem(icon: Icon(Icons.content_copy), label: "Discover"),
+                BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorites"),
+                BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.message), label: "Message"),
+                BottomNavigationBarItem(icon: Icon(Icons.telegram_outlined), label: "Profile"),
               ],
               onTap: _onNavigationBarItemSelect,
               selectedItemColor: Colors.purple[400],

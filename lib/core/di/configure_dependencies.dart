@@ -7,6 +7,14 @@ import 'package:we_date/features/auth/data/repository/authentication_repository.
 import 'package:we_date/features/auth/data/repository/authentication_repository_impl.dart';
 import 'package:we_date/features/auth/data/usecases/signup_or_login_with_fb.dart';
 import 'package:we_date/features/auth/data/usecases/signup_or_login_with_google.dart';
+import 'package:we_date/features/home/discover/data/datasources/remote_datasource/DiscoverRemoteDatasource.dart';
+import 'package:we_date/features/home/discover/data/repository/DiscoverRepository.dart';
+import 'package:we_date/features/home/discover/data/repository/DiscoverRepositoryImpl.dart';
+import 'package:we_date/features/home/stories/data/datasource/remote/stories_remote_datasource.dart';
+import 'package:we_date/features/home/stories/data/repository/stories_repository.dart';
+import 'package:we_date/features/profile/data/datasources/remote_datasources/profile_remote_datasource.dart';
+import 'package:we_date/features/profile/data/repository/profile_repository.dart';
+import 'package:we_date/features/profile/data/repository/profile_repository_impl.dart';
 
 class Injector {
   static late GetIt getIt;
@@ -31,5 +39,23 @@ class Injector {
       () => SignupOrLoginWithFacebook(getIt.get<AuthenticationRepository>()),
     );
     getIt.registerLazySingleton<Location>(() => Location());
+    getIt.registerLazySingleton<DiscoverRemoteDatasource>(
+      () => DiscoverRemoteDatasourceImpl(getIt.get<DatabaseClient>()),
+    );
+    getIt.registerLazySingleton<DiscoveryRepository>(
+      () => DiscoverRepositoryImpl(getIt.get<DiscoverRemoteDatasource>()),
+    );
+    getIt.registerLazySingleton<StoriesRemoteDatasource>(
+      () => StoriesRemoteDatasourceImpl(getIt.get<DatabaseClient>()),
+    );
+    getIt.registerLazySingleton<StoriesRepository>(
+      () => StoriesRepositoryImpl(getIt.get<StoriesRemoteDatasource>()),
+    );
+    getIt.registerLazySingleton<ProfileRemoteDatasource>(
+      () => ProfileRemoteDatasourceImpl(getIt.get<DatabaseClient>()),
+    );
+    getIt.registerLazySingleton<ProfileRepository>(
+      () => ProfileRepositoryImpl(getIt.get<ProfileRemoteDatasource>()),
+    );
   }
 }

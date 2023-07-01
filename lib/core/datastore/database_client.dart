@@ -134,13 +134,14 @@ class DatabaseClientImpl implements DatabaseClient {
 
     try {
       final collectionRef = await firestore.collection(collection.name); // Collection is profile always
+      const threshold = 0.007;
       final query = await collectionRef
-          .where("height", isLessThanOrEqualTo: int.parse(preferredHeight + 1))
-          .where("age", isLessThanOrEqualTo: int.parse(preferredAge + 2))
           .where('location.latitude', isGreaterThanOrEqualTo: location.lat)
-          .where('location.latitude', isLessThanOrEqualTo: location.lat! + 0.007)
+          .where('location.latitude', isLessThanOrEqualTo: location.lat! + threshold)
           .where('location.longitude', isGreaterThanOrEqualTo: location.long)
-          .where('location.longitude', isLessThanOrEqualTo: location.long! + 0.007);
+          .where('location.longitude', isLessThanOrEqualTo: location.long! + threshold)
+          .where("height", isLessThanOrEqualTo: int.parse(preferredHeight + 1))
+          .where("age", isLessThanOrEqualTo: int.parse(preferredAge + 2));
       return query.get().then((snapshot) => snapshot.docs);
     } catch (e) {
       throw DbFailure(e.toString());

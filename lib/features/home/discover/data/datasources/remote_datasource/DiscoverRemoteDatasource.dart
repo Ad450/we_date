@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:location/location.dart';
 import 'package:we_date/core/datastore/database_client.dart';
 import 'package:we_date/core/di/configure_dependencies.dart';
 import 'package:we_date/core/models/profile_model.dart';
-import 'package:we_date/core/utils/constants.dart';
 import 'package:we_date/core/utils/errors.dart';
 import 'package:we_date/core/utils/functions.dart';
 
