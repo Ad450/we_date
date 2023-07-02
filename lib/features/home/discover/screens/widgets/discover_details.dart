@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:we_date/features/home/discover/state/discover_bloc.dart';
-import 'package:we_date/features/home/discover/state/discover_events.dart';
+import 'package:we_date/features/home/discover/state/toggle_discover_details_bloc.dart';
+import 'package:we_date/features/home/discover/state/toggle_discover_details_events.dart';
 
 class DiscoverDetails extends StatefulWidget {
   final String imageURL;
+
   const DiscoverDetails({Key? key, required this.imageURL}) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class _DiscoverDetailsState extends State<DiscoverDetails> {
           pinned: true,
           leading: GestureDetector(
               onTap: () {
-                context.read<DiscoverBloc>().add(HideDiscoverDetails());
+                context.read<ToggleDiscoverDetailsBloc>().add(HideDiscoverDetails());
               },
               child: const Icon(Icons.cancel, color: Colors.grey, size: 50)),
           actions: const [Icon(Icons.more_vert, color: Colors.grey, size: 50)],

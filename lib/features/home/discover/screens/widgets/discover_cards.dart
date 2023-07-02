@@ -2,10 +2,12 @@ import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:we_date/features/home/discover/state/discover_bloc.dart";
-import "package:we_date/features/home/discover/state/discover_events.dart";
+import "package:we_date/features/home/discover/state/toggle_discover_details_bloc.dart";
+import "package:we_date/features/home/discover/state/toggle_discover_details_events.dart";
 
 class DiscoverCard extends StatelessWidget {
   final String url;
+
   const DiscoverCard({super.key, required this.url});
 
   @override
@@ -17,8 +19,8 @@ class DiscoverCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: Stack(children: [
           GestureDetector(
-            onTap: (){
-              context.read<DiscoverBloc>().add(ShowDiscoverDetails(url));
+            onTap: () {
+              context.read<ToggleDiscoverDetailsBloc>().add(ShowDiscoverDetails(url));
             },
             child: Container(
               height: MediaQuery.of(context).size.height * 0.7,
@@ -104,5 +106,3 @@ class DiscoverCard extends StatelessWidget {
     );
   }
 }
-
-

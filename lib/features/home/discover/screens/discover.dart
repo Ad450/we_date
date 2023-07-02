@@ -5,6 +5,8 @@ import 'package:we_date/features/home/discover/screens/widgets/discover_details.
 import 'package:we_date/features/home/discover/state/discover_bloc.dart';
 import 'package:we_date/features/home/discover/state/discover_state.dart';
 import 'package:we_date/features/home/discover/screens/widgets/discover_cards.dart';
+import 'package:we_date/features/home/discover/state/toggle_discover_details_bloc.dart';
+import 'package:we_date/features/home/discover/state/toggle_discover_details_state.dart';
 
 class Discover extends StatefulWidget {
   const Discover({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class _DiscoverState extends State<Discover> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DiscoverBloc, DiscoverState>(
+    return BlocBuilder<ToggleDiscoverDetailsBloc, ToggleDiscoverDetailsState>(
       builder: (context, state) {
         if (state is ShowDiscoverDetailsState) {
           return DiscoverDetails(imageURL: state.imageURL);

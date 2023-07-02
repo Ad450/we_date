@@ -1,8 +1,3 @@
-abstract class DiscoverEvent {}
+abstract class DiscoverEvents {}
 
-class ShowDiscoverDetails extends DiscoverEvent {
-  final String imageURL;
-  ShowDiscoverDetails(this.imageURL);
-}
-
-class HideDiscoverDetails extends DiscoverEvent {}
+class FetchDiscoveredProfilesEvent extends DiscoverEvents {}

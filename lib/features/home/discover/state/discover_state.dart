@@ -1,10 +1,18 @@
-abstract class DiscoverState {}
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:we_date/core/models/profile_model.dart';
 
-class DiscoverStateInitial extends DiscoverState {}
+part 'discover_state.freezed.dart';
 
-class ShowDiscoverDetailsState extends DiscoverState {
-  final String imageURL;
-  ShowDiscoverDetailsState(this.imageURL);
+@freezed
+class DiscoverState with _$DiscoverState {
+
+  const factory DiscoverState.fetchProfilesInitial() = DiscoverStateInitial;
+
+  const factory DiscoverState.fetchProfilesLoading() = DiscoverStateFetchProfilesLoading;
+
+  const factory DiscoverState.fetchProfilesSuccess({
+    required List<ProfileModel> profiles,
+  }) = DiscoverStateFetchProfilesSuccess;
+
+  const factory DiscoverState.fetchProfilesError({required String message}) = DiscoverStateFetchProfilesError;
 }
-
-class HideDiscoverDetailsState extends DiscoverState {}
