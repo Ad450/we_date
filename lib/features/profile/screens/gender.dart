@@ -44,14 +44,15 @@ class _GenderScreenState extends State<GenderScreen> {
                         color: Colors.white70,
                       ),
                     ),
-                    const Text(
-                      "Skip",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 183, 61, 122),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
+                    // const Text(
+                    //   "Skip",
+                    //   style: TextStyle(
+                    //     color: Color.fromARGB(255, 183, 61, 122),
+                    //     fontWeight: FontWeight.bold,
+                    //     fontSize: 18,
+                    //   ),
+                    // ),
+                    const SizedBox(),
                   ],
                 ),
                 const SizedBox(height: 40),
@@ -71,9 +72,7 @@ class _GenderScreenState extends State<GenderScreen> {
                         selectedGender = "Woman";
                       });
                     },
-                    child: SelectableContainer(
-                        selectText: "Woman",
-                        selected: selectedGender == "Woman")),
+                    child: SelectableContainer(selectText: "Woman", selected: selectedGender == "Woman")),
                 const SizedBox(height: 10),
                 GestureDetector(
                     onTap: () {
@@ -81,8 +80,7 @@ class _GenderScreenState extends State<GenderScreen> {
                         selectedGender = "Man";
                       });
                     },
-                    child: SelectableContainer(
-                        selectText: "Man", selected: selectedGender == "Man")),
+                    child: SelectableContainer(selectText: "Man", selected: selectedGender == "Man")),
                 const SizedBox(height: 10),
                 GestureDetector(
                     onTap: () {
@@ -90,9 +88,7 @@ class _GenderScreenState extends State<GenderScreen> {
                         selectedGender = "Other";
                       });
                     },
-                    child: SelectableContainer(
-                        selectText: "Other",
-                        selected: selectedGender == "Other")),
+                    child: SelectableContainer(selectText: "Other", selected: selectedGender == "Other")),
                 const SizedBox(height: 180),
                 WeDateButton(
                   text: "Continue",
@@ -102,8 +98,7 @@ class _GenderScreenState extends State<GenderScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
                     );
                   },
                 ),

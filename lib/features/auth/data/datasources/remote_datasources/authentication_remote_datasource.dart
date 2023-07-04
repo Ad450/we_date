@@ -3,9 +3,11 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:location/location.dart';
 import 'package:we_date/core/datastore/database_client.dart';
+import 'package:we_date/core/datastore/shared_preferences.dart';
 import 'package:we_date/core/di/configure_dependencies.dart';
 import 'package:we_date/core/models/profile_model.dart';
 import 'package:we_date/core/models/user_model.dart';
+import 'package:we_date/core/utils/constants.dart';
 import 'package:we_date/core/utils/errors.dart';
 import 'package:we_date/core/utils/error_messages.dart';
 import 'package:we_date/core/utils/functions.dart';
@@ -18,8 +20,9 @@ abstract class AuthenticationRemoteDatasource {
 
 class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasource {
   final DatabaseClient _db;
+  final CustomSharedPreferences customSharedPreferences;
 
-  AuthenticationRemoteDatasourceImpl(this._db);
+  AuthenticationRemoteDatasourceImpl(this._db, this.customSharedPreferences);
 
   @override
   Future<UserModel> signupOrLoginWithFacebook() async {
@@ -36,6 +39,7 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
       );
       await _db.save(Collections.user, user.toJson());
       await _db.save(Collections.profile, profile.toJson());
+      customSharedPreferences.setBool(authenticated, true);
       return user;
     } on DbFailure catch (e) {
       throw ApiFailure(e.message);

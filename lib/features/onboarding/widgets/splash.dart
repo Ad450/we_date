@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:we_date/core/datastore/shared_preferences.dart';
+import 'package:we_date/core/di/configure_dependencies.dart';
+import 'package:we_date/core/utils/constants.dart';
 import 'package:we_date/core/widget/we_date_button.dart';
 import 'package:we_date/features/auth/screens/auth_landing_page.dart';
 
@@ -8,6 +11,7 @@ class Splash extends StatefulWidget {
   final String subtitle;
   final String imgURL;
   final LiquidController liquidController;
+
   const Splash({
     super.key,
     required this.title,
@@ -22,6 +26,11 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   final swipePageLength = 2; // starts from 0
+
+  void _setHasSeenOrSkippedSplash() async {
+    print("inside set has seen");
+    await Injector.getIt.get<CustomSharedPreferences>().setBool(hasSeenOrSkippedSplash, true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +62,8 @@ class _SplashState extends State<Splash> {
                   ),
                 ),
                 onTap: () {
-                  // navigate to sign up and login
+                  // navigate to sign up and
+                  _setHasSeenOrSkippedSplash();
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => const AuthLandingPage()),
                     (route) => true,
@@ -91,6 +101,7 @@ class _SplashState extends State<Splash> {
                 final nextPage = widget.liquidController.currentPage + 1;
                 widget.liquidController.animateToPage(page: nextPage);
               } else {
+                _setHasSeenOrSkippedSplash();
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => const AuthLandingPage()),
                   (route) => true,

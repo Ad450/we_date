@@ -31,23 +31,23 @@ class _ProfileState extends State<Profile> {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height,
                 ),
-                Positioned(
-                    top: 45,
-                    left: 20,
-                    right: 20,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        Text(
-                          "Skip",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 183, 61, 122),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    )),
+                // Positioned(
+                //     top: 45,
+                //     left: 20,
+                //     right: 20,
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.end,
+                //       children: const [
+                //         Text(
+                //           "Skip",
+                //           style: TextStyle(
+                //             color: Color.fromARGB(255, 183, 61, 122),
+                //             fontWeight: FontWeight.bold,
+                //             fontSize: 18,
+                //           ),
+                //         ),
+                //       ],
+                //     )),
                 const Positioned(
                   left: 20,
                   top: 100,
@@ -64,8 +64,7 @@ class _ProfileState extends State<Profile> {
                 Positioned(
                   left: (getVisibleScreenWidth(context) - 160) / 2,
                   top: 160,
-                  child: const Align(
-                      alignment: Alignment.center, child: PictureAvatar()),
+                  child: const Align(alignment: Alignment.center, child: PictureAvatar()),
                 ),
                 Positioned(
                   top: MediaQuery.of(context).size.height * 0.56,
@@ -95,8 +94,7 @@ class _ProfileState extends State<Profile> {
                               text: "Confirm",
                               textFontSize: 20,
                               textColor: Colors.white,
-                              backgroundColor:
-                                  const Color.fromARGB(255, 183, 61, 122),
+                              backgroundColor: const Color.fromARGB(255, 183, 61, 122),
                               onPressed: () {
                                 // Navigator.pushAndRemoveUntil(
                                 //   context,
@@ -104,10 +102,9 @@ class _ProfileState extends State<Profile> {
                                 //   (route) => false,
                                 // );
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const GenderScreen()));
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const GenderScreen()),
+                                );
                               },
                             ),
                           ],

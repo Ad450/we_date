@@ -63,7 +63,10 @@ class DatabaseClientImpl implements DatabaseClient {
 
   @override
   Future<QueryDocumentSnapshot<Map<String, dynamic>>> getByIdentifier<T extends Collections>(
-      T collection, String identifierkey, String identifierValue) async {
+    T collection,
+    String identifierkey,
+    String identifierValue,
+  ) async {
     try {
       final collectionRef = await firestore.collection(collection.name);
       return await collectionRef

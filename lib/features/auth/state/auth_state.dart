@@ -9,6 +9,10 @@ part 'auth_state.g.dart';
 class AuthState with _$AuthState {
   const factory AuthState.initial() = _AuthStateInitial;
 
+  const factory AuthState.authenticated() = _AuthStateAuthenticated;
+
+  const factory AuthState.unAuthenticated() = _AuthStateUnAuthenticated;
+
   const factory AuthState.loading() = _AuthStateLoading;
 
   const factory AuthState.success({required AuthStatePayload payload}) = _AuthStateSuccess;

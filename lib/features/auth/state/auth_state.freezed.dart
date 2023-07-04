@@ -19,6 +19,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unAuthenticated,
     required TResult Function() loading,
     required TResult Function(AuthStatePayload payload) success,
     required TResult Function(AuthStatePayload payload) error,
@@ -27,6 +29,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? authenticated,
+    TResult? Function()? unAuthenticated,
     TResult? Function()? loading,
     TResult? Function(AuthStatePayload payload)? success,
     TResult? Function(AuthStatePayload payload)? error,
@@ -35,6 +39,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unAuthenticated,
     TResult Function()? loading,
     TResult Function(AuthStatePayload payload)? success,
     TResult Function(AuthStatePayload payload)? error,
@@ -44,6 +50,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthStateInitial value) initial,
+    required TResult Function(_AuthStateAuthenticated value) authenticated,
+    required TResult Function(_AuthStateUnAuthenticated value) unAuthenticated,
     required TResult Function(_AuthStateLoading value) loading,
     required TResult Function(_AuthStateSuccess value) success,
     required TResult Function(_AuthStateError value) error,
@@ -52,6 +60,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthStateInitial value)? initial,
+    TResult? Function(_AuthStateAuthenticated value)? authenticated,
+    TResult? Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult? Function(_AuthStateLoading value)? loading,
     TResult? Function(_AuthStateSuccess value)? success,
     TResult? Function(_AuthStateError value)? error,
@@ -60,6 +70,8 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthStateInitial value)? initial,
+    TResult Function(_AuthStateAuthenticated value)? authenticated,
+    TResult Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult Function(_AuthStateLoading value)? loading,
     TResult Function(_AuthStateSuccess value)? success,
     TResult Function(_AuthStateError value)? error,
@@ -124,6 +136,8 @@ class _$_AuthStateInitial implements _AuthStateInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unAuthenticated,
     required TResult Function() loading,
     required TResult Function(AuthStatePayload payload) success,
     required TResult Function(AuthStatePayload payload) error,
@@ -135,6 +149,8 @@ class _$_AuthStateInitial implements _AuthStateInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? authenticated,
+    TResult? Function()? unAuthenticated,
     TResult? Function()? loading,
     TResult? Function(AuthStatePayload payload)? success,
     TResult? Function(AuthStatePayload payload)? error,
@@ -146,6 +162,8 @@ class _$_AuthStateInitial implements _AuthStateInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unAuthenticated,
     TResult Function()? loading,
     TResult Function(AuthStatePayload payload)? success,
     TResult Function(AuthStatePayload payload)? error,
@@ -161,6 +179,8 @@ class _$_AuthStateInitial implements _AuthStateInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthStateInitial value) initial,
+    required TResult Function(_AuthStateAuthenticated value) authenticated,
+    required TResult Function(_AuthStateUnAuthenticated value) unAuthenticated,
     required TResult Function(_AuthStateLoading value) loading,
     required TResult Function(_AuthStateSuccess value) success,
     required TResult Function(_AuthStateError value) error,
@@ -172,6 +192,8 @@ class _$_AuthStateInitial implements _AuthStateInitial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthStateInitial value)? initial,
+    TResult? Function(_AuthStateAuthenticated value)? authenticated,
+    TResult? Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult? Function(_AuthStateLoading value)? loading,
     TResult? Function(_AuthStateSuccess value)? success,
     TResult? Function(_AuthStateError value)? error,
@@ -183,6 +205,8 @@ class _$_AuthStateInitial implements _AuthStateInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthStateInitial value)? initial,
+    TResult Function(_AuthStateAuthenticated value)? authenticated,
+    TResult Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult Function(_AuthStateLoading value)? loading,
     TResult Function(_AuthStateSuccess value)? success,
     TResult Function(_AuthStateError value)? error,
@@ -197,6 +221,261 @@ class _$_AuthStateInitial implements _AuthStateInitial {
 
 abstract class _AuthStateInitial implements AuthState {
   const factory _AuthStateInitial() = _$_AuthStateInitial;
+}
+
+/// @nodoc
+abstract class _$$_AuthStateAuthenticatedCopyWith<$Res> {
+  factory _$$_AuthStateAuthenticatedCopyWith(_$_AuthStateAuthenticated value,
+          $Res Function(_$_AuthStateAuthenticated) then) =
+      __$$_AuthStateAuthenticatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AuthStateAuthenticatedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateAuthenticated>
+    implements _$$_AuthStateAuthenticatedCopyWith<$Res> {
+  __$$_AuthStateAuthenticatedCopyWithImpl(_$_AuthStateAuthenticated _value,
+      $Res Function(_$_AuthStateAuthenticated) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AuthStateAuthenticated implements _AuthStateAuthenticated {
+  const _$_AuthStateAuthenticated();
+
+  @override
+  String toString() {
+    return 'AuthState.authenticated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthStateAuthenticated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unAuthenticated,
+    required TResult Function() loading,
+    required TResult Function(AuthStatePayload payload) success,
+    required TResult Function(AuthStatePayload payload) error,
+  }) {
+    return authenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? authenticated,
+    TResult? Function()? unAuthenticated,
+    TResult? Function()? loading,
+    TResult? Function(AuthStatePayload payload)? success,
+    TResult? Function(AuthStatePayload payload)? error,
+  }) {
+    return authenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unAuthenticated,
+    TResult Function()? loading,
+    TResult Function(AuthStatePayload payload)? success,
+    TResult Function(AuthStatePayload payload)? error,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthStateInitial value) initial,
+    required TResult Function(_AuthStateAuthenticated value) authenticated,
+    required TResult Function(_AuthStateUnAuthenticated value) unAuthenticated,
+    required TResult Function(_AuthStateLoading value) loading,
+    required TResult Function(_AuthStateSuccess value) success,
+    required TResult Function(_AuthStateError value) error,
+  }) {
+    return authenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthStateInitial value)? initial,
+    TResult? Function(_AuthStateAuthenticated value)? authenticated,
+    TResult? Function(_AuthStateUnAuthenticated value)? unAuthenticated,
+    TResult? Function(_AuthStateLoading value)? loading,
+    TResult? Function(_AuthStateSuccess value)? success,
+    TResult? Function(_AuthStateError value)? error,
+  }) {
+    return authenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthStateInitial value)? initial,
+    TResult Function(_AuthStateAuthenticated value)? authenticated,
+    TResult Function(_AuthStateUnAuthenticated value)? unAuthenticated,
+    TResult Function(_AuthStateLoading value)? loading,
+    TResult Function(_AuthStateSuccess value)? success,
+    TResult Function(_AuthStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthStateAuthenticated implements AuthState {
+  const factory _AuthStateAuthenticated() = _$_AuthStateAuthenticated;
+}
+
+/// @nodoc
+abstract class _$$_AuthStateUnAuthenticatedCopyWith<$Res> {
+  factory _$$_AuthStateUnAuthenticatedCopyWith(
+          _$_AuthStateUnAuthenticated value,
+          $Res Function(_$_AuthStateUnAuthenticated) then) =
+      __$$_AuthStateUnAuthenticatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AuthStateUnAuthenticatedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateUnAuthenticated>
+    implements _$$_AuthStateUnAuthenticatedCopyWith<$Res> {
+  __$$_AuthStateUnAuthenticatedCopyWithImpl(_$_AuthStateUnAuthenticated _value,
+      $Res Function(_$_AuthStateUnAuthenticated) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AuthStateUnAuthenticated implements _AuthStateUnAuthenticated {
+  const _$_AuthStateUnAuthenticated();
+
+  @override
+  String toString() {
+    return 'AuthState.unAuthenticated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthStateUnAuthenticated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unAuthenticated,
+    required TResult Function() loading,
+    required TResult Function(AuthStatePayload payload) success,
+    required TResult Function(AuthStatePayload payload) error,
+  }) {
+    return unAuthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? authenticated,
+    TResult? Function()? unAuthenticated,
+    TResult? Function()? loading,
+    TResult? Function(AuthStatePayload payload)? success,
+    TResult? Function(AuthStatePayload payload)? error,
+  }) {
+    return unAuthenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unAuthenticated,
+    TResult Function()? loading,
+    TResult Function(AuthStatePayload payload)? success,
+    TResult Function(AuthStatePayload payload)? error,
+    required TResult orElse(),
+  }) {
+    if (unAuthenticated != null) {
+      return unAuthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthStateInitial value) initial,
+    required TResult Function(_AuthStateAuthenticated value) authenticated,
+    required TResult Function(_AuthStateUnAuthenticated value) unAuthenticated,
+    required TResult Function(_AuthStateLoading value) loading,
+    required TResult Function(_AuthStateSuccess value) success,
+    required TResult Function(_AuthStateError value) error,
+  }) {
+    return unAuthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthStateInitial value)? initial,
+    TResult? Function(_AuthStateAuthenticated value)? authenticated,
+    TResult? Function(_AuthStateUnAuthenticated value)? unAuthenticated,
+    TResult? Function(_AuthStateLoading value)? loading,
+    TResult? Function(_AuthStateSuccess value)? success,
+    TResult? Function(_AuthStateError value)? error,
+  }) {
+    return unAuthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthStateInitial value)? initial,
+    TResult Function(_AuthStateAuthenticated value)? authenticated,
+    TResult Function(_AuthStateUnAuthenticated value)? unAuthenticated,
+    TResult Function(_AuthStateLoading value)? loading,
+    TResult Function(_AuthStateSuccess value)? success,
+    TResult Function(_AuthStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (unAuthenticated != null) {
+      return unAuthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthStateUnAuthenticated implements AuthState {
+  const factory _AuthStateUnAuthenticated() = _$_AuthStateUnAuthenticated;
 }
 
 /// @nodoc
@@ -238,6 +517,8 @@ class _$_AuthStateLoading implements _AuthStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unAuthenticated,
     required TResult Function() loading,
     required TResult Function(AuthStatePayload payload) success,
     required TResult Function(AuthStatePayload payload) error,
@@ -249,6 +530,8 @@ class _$_AuthStateLoading implements _AuthStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? authenticated,
+    TResult? Function()? unAuthenticated,
     TResult? Function()? loading,
     TResult? Function(AuthStatePayload payload)? success,
     TResult? Function(AuthStatePayload payload)? error,
@@ -260,6 +543,8 @@ class _$_AuthStateLoading implements _AuthStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unAuthenticated,
     TResult Function()? loading,
     TResult Function(AuthStatePayload payload)? success,
     TResult Function(AuthStatePayload payload)? error,
@@ -275,6 +560,8 @@ class _$_AuthStateLoading implements _AuthStateLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthStateInitial value) initial,
+    required TResult Function(_AuthStateAuthenticated value) authenticated,
+    required TResult Function(_AuthStateUnAuthenticated value) unAuthenticated,
     required TResult Function(_AuthStateLoading value) loading,
     required TResult Function(_AuthStateSuccess value) success,
     required TResult Function(_AuthStateError value) error,
@@ -286,6 +573,8 @@ class _$_AuthStateLoading implements _AuthStateLoading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthStateInitial value)? initial,
+    TResult? Function(_AuthStateAuthenticated value)? authenticated,
+    TResult? Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult? Function(_AuthStateLoading value)? loading,
     TResult? Function(_AuthStateSuccess value)? success,
     TResult? Function(_AuthStateError value)? error,
@@ -297,6 +586,8 @@ class _$_AuthStateLoading implements _AuthStateLoading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthStateInitial value)? initial,
+    TResult Function(_AuthStateAuthenticated value)? authenticated,
+    TResult Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult Function(_AuthStateLoading value)? loading,
     TResult Function(_AuthStateSuccess value)? success,
     TResult Function(_AuthStateError value)? error,
@@ -388,6 +679,8 @@ class _$_AuthStateSuccess implements _AuthStateSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unAuthenticated,
     required TResult Function() loading,
     required TResult Function(AuthStatePayload payload) success,
     required TResult Function(AuthStatePayload payload) error,
@@ -399,6 +692,8 @@ class _$_AuthStateSuccess implements _AuthStateSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? authenticated,
+    TResult? Function()? unAuthenticated,
     TResult? Function()? loading,
     TResult? Function(AuthStatePayload payload)? success,
     TResult? Function(AuthStatePayload payload)? error,
@@ -410,6 +705,8 @@ class _$_AuthStateSuccess implements _AuthStateSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unAuthenticated,
     TResult Function()? loading,
     TResult Function(AuthStatePayload payload)? success,
     TResult Function(AuthStatePayload payload)? error,
@@ -425,6 +722,8 @@ class _$_AuthStateSuccess implements _AuthStateSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthStateInitial value) initial,
+    required TResult Function(_AuthStateAuthenticated value) authenticated,
+    required TResult Function(_AuthStateUnAuthenticated value) unAuthenticated,
     required TResult Function(_AuthStateLoading value) loading,
     required TResult Function(_AuthStateSuccess value) success,
     required TResult Function(_AuthStateError value) error,
@@ -436,6 +735,8 @@ class _$_AuthStateSuccess implements _AuthStateSuccess {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthStateInitial value)? initial,
+    TResult? Function(_AuthStateAuthenticated value)? authenticated,
+    TResult? Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult? Function(_AuthStateLoading value)? loading,
     TResult? Function(_AuthStateSuccess value)? success,
     TResult? Function(_AuthStateError value)? error,
@@ -447,6 +748,8 @@ class _$_AuthStateSuccess implements _AuthStateSuccess {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthStateInitial value)? initial,
+    TResult Function(_AuthStateAuthenticated value)? authenticated,
+    TResult Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult Function(_AuthStateLoading value)? loading,
     TResult Function(_AuthStateSuccess value)? success,
     TResult Function(_AuthStateError value)? error,
@@ -544,6 +847,8 @@ class _$_AuthStateError implements _AuthStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unAuthenticated,
     required TResult Function() loading,
     required TResult Function(AuthStatePayload payload) success,
     required TResult Function(AuthStatePayload payload) error,
@@ -555,6 +860,8 @@ class _$_AuthStateError implements _AuthStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? authenticated,
+    TResult? Function()? unAuthenticated,
     TResult? Function()? loading,
     TResult? Function(AuthStatePayload payload)? success,
     TResult? Function(AuthStatePayload payload)? error,
@@ -566,6 +873,8 @@ class _$_AuthStateError implements _AuthStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unAuthenticated,
     TResult Function()? loading,
     TResult Function(AuthStatePayload payload)? success,
     TResult Function(AuthStatePayload payload)? error,
@@ -581,6 +890,8 @@ class _$_AuthStateError implements _AuthStateError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthStateInitial value) initial,
+    required TResult Function(_AuthStateAuthenticated value) authenticated,
+    required TResult Function(_AuthStateUnAuthenticated value) unAuthenticated,
     required TResult Function(_AuthStateLoading value) loading,
     required TResult Function(_AuthStateSuccess value) success,
     required TResult Function(_AuthStateError value) error,
@@ -592,6 +903,8 @@ class _$_AuthStateError implements _AuthStateError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthStateInitial value)? initial,
+    TResult? Function(_AuthStateAuthenticated value)? authenticated,
+    TResult? Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult? Function(_AuthStateLoading value)? loading,
     TResult? Function(_AuthStateSuccess value)? success,
     TResult? Function(_AuthStateError value)? error,
@@ -603,6 +916,8 @@ class _$_AuthStateError implements _AuthStateError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthStateInitial value)? initial,
+    TResult Function(_AuthStateAuthenticated value)? authenticated,
+    TResult Function(_AuthStateUnAuthenticated value)? unAuthenticated,
     TResult Function(_AuthStateLoading value)? loading,
     TResult Function(_AuthStateSuccess value)? success,
     TResult Function(_AuthStateError value)? error,

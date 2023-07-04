@@ -7,3 +7,4 @@ const String STORY_UPLOAD_FAILURE = "Failed to upload story";
 const String ENABLE_LOCATION_SERVICE = "Enable location service";
 const String LOCATION_CANT_BE_NULL = "Location can not be null";
 const String PREFERED_AGE_REQUIRED = "Prefered age required";
+const String NO_USER = "No user found";
