@@ -21,4 +21,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       () => _authenticationRemoteDatasource.signupOrLoginWithGoogle(),
     );
   }
+
+  @override
+  Future<void> signout() async {
+    return await guardedApiCall(
+      () => _authenticationRemoteDatasource.signout(),
+    );
+  }
 }

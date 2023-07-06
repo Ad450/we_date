@@ -10,7 +10,7 @@ abstract class ProfileModel with _$ProfileModel {
   factory ProfileModel({
     required String uid,
     required String gender,
-    required LocationModel? location,
+    required Map<String, dynamic>? location,
     String? firstName,
     String? lastName,
     String? profileImage,
@@ -23,8 +23,7 @@ abstract class ProfileModel with _$ProfileModel {
     String? education,
   }) = _ProfileModel;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileModelFromJson(
+  factory ProfileModel.fromJson(Map<String, dynamic> json) => _$ProfileModelFromJson(
         Map.castFrom<dynamic, dynamic, String, dynamic>(json),
       );
 }

@@ -84,24 +84,30 @@ class _AuthLandingPageState extends State<AuthLandingPage> {
                         Builder(builder: (context) {
                           return BlocConsumer<AuthenticationBloc, AuthState>(listener: (_, state) {
                             state.maybeMap(
-                                orElse: () {},
-                                authenticated: (_) {
-                                  if (mounted) {
-                                    Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(builder: (_) => const Profile()),
-                                      (route) => false,
-                                    );
-                                  }
-                                },
-                                loading: (_) {
-                                  final progress = ProgressHUD.of(context);
-                                  progress?.showWithText('Loading...');
-                                  Future.delayed(const Duration(seconds: 2), () {
-                                    progress?.dismiss();
-                                  });
-                                },
-                                error: (state) => _showSnackBar(state.payload.error!));
+                              orElse: () {},
+                              authenticated: (_) {
+                                if (mounted) {
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => const Profile()),
+                                    (route) => false,
+                                  );
+                                }
+                              },
+                              loading: (_) {
+                                final progress = ProgressHUD.of(context);
+                                progress?.showWithText('Loading...');
+                                Future.delayed(const Duration(seconds: 8), () {
+                                  progress?.dismiss();
+                                });
+                              },
+                              error: (state) => _showSnackBar(state.payload.error!),
+                              success: (_) => Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(builder: (_) => const Profile()),
+                                (route) => false,
+                              ),
+                            );
                           }, builder: (_, state) {
                             return state.maybeMap(
                               orElse: () => Column(

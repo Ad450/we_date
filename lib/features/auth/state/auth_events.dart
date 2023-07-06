@@ -5,3 +5,5 @@ class SignupWithGoogleEvent extends AuthEvent {}
 class SignupWithFacebookEvent extends AuthEvent {}
 
 class AppStarted extends AuthEvent {}
+
+class SignoutEvent extends AuthEvent {}

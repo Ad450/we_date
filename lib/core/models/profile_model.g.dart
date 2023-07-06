@@ -10,9 +10,7 @@ _$_ProfileModel _$$_ProfileModelFromJson(Map<String, dynamic> json) =>
     _$_ProfileModel(
       uid: json['uid'] as String,
       gender: json['gender'] as String,
-      location: json['location'] == null
-          ? null
-          : LocationModel.fromJson(json['location'] as Map<String, dynamic>),
+      location: json['location'] as Map<String, dynamic>?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       profileImage: json['profileImage'] as String?,

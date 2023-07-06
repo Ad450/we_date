@@ -25,7 +25,10 @@ class PictureAvatar extends StatelessWidget {
           Container(
             width: 160,
             height: 300,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.white),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: const Color.fromARGB(255, 183, 61, 122),
+            ),
             child: !isFileSelected
                 ? const Icon(
                     Icons.person,

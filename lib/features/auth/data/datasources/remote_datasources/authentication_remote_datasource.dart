@@ -15,6 +15,8 @@ abstract class AuthenticationRemoteDatasource {
   Future<UserModel> signupOrLoginWithGoogle();
 
   Future<UserModel> signupOrLoginWithFacebook();
+
+  Future<void> signout();
 }
 
 class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasource {
@@ -31,7 +33,7 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
       final userCredentials = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
 
       final location = await getLocation(Injector.getIt.get<Location>());
-      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location);
+      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
       final user = UserModel(
         uid: userCredentials.user!.uid,
         email: userCredentials.user!.email!,
@@ -65,7 +67,7 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
       );
       final userCredentials = await FirebaseAuth.instance.signInWithCredential(googleCredentials);
       final location = await getLocation(Injector.getIt.get<Location>());
-      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location);
+      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
       final user = UserModel(
         uid: userCredentials.user!.uid,
         email: userCredentials.user!.email!,
@@ -74,8 +76,9 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
       final userfromDB = await _db.getByIdentifier(Collections.user, "uid", uid);
 
       if (userfromDB == null) {
-        await _db.save(Collections.user, user.toJson());
+        print(profile.toJson());
         await _db.save(Collections.profile, profile.toJson());
+        await _db.save(Collections.user, user.toJson());
       }
 
       return user;
@@ -83,6 +86,23 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
       throw ApiFailure(e.message);
     } catch (e) {
       throw ApiFailure(GOOGLE_SIGNIN_FAILED);
+    }
+  }
+
+  @override
+  Future<void> signout() async {
+    try {
+      final firebase = FirebaseAuth.instance;
+      final user = firebase.currentUser;
+      final userfromDB = await _db.getByIdentifier(Collections.user, "uid", user!.uid);
+      if (userfromDB != null) {
+        await _db.deleteDocument(Collections.user, "uid", user!.uid);
+        await _db.deleteDocument(Collections.profile, "uid", user!.uid);
+        await firebase.signOut();
+      }
+      return;
+    } on DbFailure catch (e) {
+      throw ApiFailure(e.toString());
     }
   }
 }

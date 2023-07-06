@@ -10,7 +10,7 @@ class Splash extends StatefulWidget {
   final String title;
   final String subtitle;
   final String imgURL;
-  final LiquidController liquidController;
+  final LiquidController? liquidController;
 
   const Splash({
     super.key,
@@ -32,6 +32,7 @@ class _SplashState extends State<Splash> {
     await Injector.getIt.get<CustomSharedPreferences>().setBool(hasSeenOrSkippedSplash, true);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +43,10 @@ class _SplashState extends State<Splash> {
               borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(50)),
               child: SizedBox(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.62,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * 0.62,
                 child: Image.asset(
                   widget.imgURL,
                   fit: BoxFit.cover,
@@ -66,7 +70,7 @@ class _SplashState extends State<Splash> {
                   _setHasSeenOrSkippedSplash();
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => const AuthLandingPage()),
-                    (route) => true,
+                        (route) => true,
                   );
                 },
               ),
@@ -97,15 +101,17 @@ class _SplashState extends State<Splash> {
           WeDateButton(
             text: "NEXT",
             onPressed: () {
-              if (widget.liquidController.currentPage != swipePageLength) {
-                final nextPage = widget.liquidController.currentPage + 1;
-                widget.liquidController.animateToPage(page: nextPage);
-              } else {
-                _setHasSeenOrSkippedSplash();
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const AuthLandingPage()),
-                  (route) => true,
-                );
+              if (widget.liquidController != null) {
+                if (widget.liquidController!.currentPage != swipePageLength) {
+                  final nextPage = widget.liquidController!.currentPage + 1;
+                  widget.liquidController!.animateToPage(page: nextPage);
+                } else {
+                  _setHasSeenOrSkippedSplash();
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const AuthLandingPage()),
+                        (route) => true,
+                  );
+                }
               }
             },
             backgroundColor: const Color.fromARGB(255, 142, 75, 171),

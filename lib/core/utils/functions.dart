@@ -22,8 +22,6 @@ Future<T> guardedApiCall<T>(Function func) async {
     return await func() as T;
   } on ApiFailure catch (e) {
     throw NetworkFailure(e.message);
-  } finally {
-    throw NetworkFailure(GENERIC_NETWORK_FAILURE);
   }
 }
 
@@ -85,17 +83,17 @@ Future<void> updateProfileOnLocationChange(
   final profile = ProfileModel.fromJson(doc.data());
 
   location.onLocationChanged.listen((event) {
-    if (profile.location != null && profile.location != null) {
+    if (profile.location?['lat'] != null && profile.location?["long"] != null) {
       if (event.latitude != null && event.longitude != null) {
         final distance = calculateDistance(
-          oldLat: profile.location!.lat!,
-          oldLong: profile.location!.long!,
+          oldLat: profile.location!["lat"]!,
+          oldLong: profile.location!["long"]!,
           newLat: event.latitude!,
           newLong: event.longitude!,
         );
         if (distance > distanceChangeThreshold) {
           profile.copyWith(
-            location: LocationModel(lat: event.latitude!, long: event.longitude!),
+            location: LocationModel(lat: event.latitude!, long: event.longitude!).toJson(),
           );
           db.updateByUniqueIdentifier(Collections.profile,
               identifierValue: user.uid, identifierkey: "uid", data: profile);

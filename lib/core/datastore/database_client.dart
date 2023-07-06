@@ -34,7 +34,7 @@ abstract class DatabaseClient {
     required preferredHeight,
   });
 
-  Future<void> deleteDocument<T extends Collections>(T collection, String identifier, String identifierKey);
+  Future<void> deleteDocument<T extends Collections>(T collection, String identifierKey, String identifierValue);
 }
 
 enum Collections { user, profile, story, preferences }
@@ -91,14 +91,13 @@ class DatabaseClientImpl implements DatabaseClient {
   }) async {
     try {
       final collectionRef = await firestore.collection(collection.name);
-      final docs =
-          await collectionRef.where(identifierkey, isEqualTo: identifierValue).get().then((snapshot) => snapshot.docs);
-      final doc = docs.first;
-      if (!doc.exists) {
+      final doc = await getByIdentifier(collection, identifierkey, identifierValue);
+      if (doc == null) {
         throw Exception(OBJECT_DOES_NOT_EXISTS);
       }
       await collectionRef.doc(doc.id).update(data);
     } catch (e) {
+      print(e);
       throw DbFailure(e.toString());
     }
   }

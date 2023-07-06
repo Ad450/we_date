@@ -22,7 +22,7 @@ ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) {
 mixin _$ProfileModel {
   String get uid => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
-  LocationModel? get location => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get location => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get lastName => throw _privateConstructorUsedError;
   String? get profileImage => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $ProfileModelCopyWith<$Res> {
   $Res call(
       {String uid,
       String gender,
-      LocationModel? location,
+      Map<String, dynamic>? location,
       String? firstName,
       String? lastName,
       String? profileImage,
@@ -60,8 +60,6 @@ abstract class $ProfileModelCopyWith<$Res> {
       String? age,
       String? occupation,
       String? education});
-
-  $LocationModelCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -103,7 +101,7 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as LocationModel?,
+              as Map<String, dynamic>?,
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -146,18 +144,6 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
               as String?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LocationModelCopyWith<$Res>? get location {
-    if (_value.location == null) {
-      return null;
-    }
-
-    return $LocationModelCopyWith<$Res>(_value.location!, (value) {
-      return _then(_value.copyWith(location: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -171,7 +157,7 @@ abstract class _$$_ProfileModelCopyWith<$Res>
   $Res call(
       {String uid,
       String gender,
-      LocationModel? location,
+      Map<String, dynamic>? location,
       String? firstName,
       String? lastName,
       String? profileImage,
@@ -182,9 +168,6 @@ abstract class _$$_ProfileModelCopyWith<$Res>
       String? age,
       String? occupation,
       String? education});
-
-  @override
-  $LocationModelCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -222,9 +205,9 @@ class __$$_ProfileModelCopyWithImpl<$Res>
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
       location: freezed == location
-          ? _value.location
+          ? _value._location
           : location // ignore: cast_nullable_to_non_nullable
-              as LocationModel?,
+              as Map<String, dynamic>?,
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -275,7 +258,7 @@ class _$_ProfileModel implements _ProfileModel {
   _$_ProfileModel(
       {required this.uid,
       required this.gender,
-      required this.location,
+      required final Map<String, dynamic>? location,
       this.firstName,
       this.lastName,
       this.profileImage,
@@ -285,7 +268,8 @@ class _$_ProfileModel implements _ProfileModel {
       this.height,
       this.age,
       this.occupation,
-      this.education});
+      this.education})
+      : _location = location;
 
   factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileModelFromJson(json);
@@ -294,8 +278,16 @@ class _$_ProfileModel implements _ProfileModel {
   final String uid;
   @override
   final String gender;
+  final Map<String, dynamic>? _location;
   @override
-  final LocationModel? location;
+  Map<String, dynamic>? get location {
+    final value = _location;
+    if (value == null) return null;
+    if (_location is EqualUnmodifiableMapView) return _location;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @override
   final String? firstName;
   @override
@@ -329,8 +321,7 @@ class _$_ProfileModel implements _ProfileModel {
             other is _$_ProfileModel &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
+            const DeepCollectionEquality().equals(other._location, _location) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -356,7 +347,7 @@ class _$_ProfileModel implements _ProfileModel {
       runtimeType,
       uid,
       gender,
-      location,
+      const DeepCollectionEquality().hash(_location),
       firstName,
       lastName,
       profileImage,
@@ -386,7 +377,7 @@ abstract class _ProfileModel implements ProfileModel {
   factory _ProfileModel(
       {required final String uid,
       required final String gender,
-      required final LocationModel? location,
+      required final Map<String, dynamic>? location,
       final String? firstName,
       final String? lastName,
       final String? profileImage,
@@ -406,7 +397,7 @@ abstract class _ProfileModel implements ProfileModel {
   @override
   String get gender;
   @override
-  LocationModel? get location;
+  Map<String, dynamic>? get location;
   @override
   String? get firstName;
   @override

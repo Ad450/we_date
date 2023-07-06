@@ -6,10 +6,12 @@ import 'package:we_date/features/profile/screens/state/profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UpdateProfile updateProfile;
 
-  ProfileBloc({required this.updateProfile}) : super(const ProfileState.updateProfileInitial()) {}
+  ProfileBloc({required this.updateProfile}) : super(const ProfileState.updateProfileInitial()) {
+    on<UpdateProfileEvent>(_updateProfile);
+  }
 
   Future<void> _updateProfile(UpdateProfileEvent event, Emitter<ProfileState> emit) async {
-    emit(const ProfileState.updateProfileInitial());
+    emit(const ProfileState.updateProfileLoading());
     final result = await updateProfile(UpdateProfileParam(
       gender: event.gender,
       firstName: event.firstName,

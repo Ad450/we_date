@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:we_date/core/di/configure_dependencies.dart';
 import 'package:we_date/features/auth/data/usecases/check_auth_status.dart';
+import 'package:we_date/features/auth/data/usecases/signout.dart';
 import 'package:we_date/features/auth/data/usecases/signup_or_login_with_fb.dart';
 import 'package:we_date/features/auth/data/usecases/signup_or_login_with_google.dart';
 import 'package:we_date/features/auth/state/auth_bloc.dart';
@@ -19,10 +20,11 @@ final List<BlocProvider> stateProviders = [];
 final toggleDiscoverDetailsBloc = BlocProvider(create: (_) => ToggleDiscoverDetailsBloc());
 final authBloc = BlocProvider(
   create: (_) => AuthenticationBloc(
-    signupOrLoginWithFacebook: Injector.getIt.get<SignupOrLoginWithFacebook>(),
-    signupOrLoginWithGoogle: Injector.getIt.get<SignupOrLoginWithGoogle>(),
-    checkAuthStatus: Injector.getIt.get<CheckAuthStatus>(),
-  )..add(AppStarted()),
+      signupOrLoginWithFacebook: Injector.getIt.get<SignupOrLoginWithFacebook>(),
+      signupOrLoginWithGoogle: Injector.getIt.get<SignupOrLoginWithGoogle>(),
+      checkAuthStatus: Injector.getIt.get<CheckAuthStatus>(),
+      signout: Injector.getIt.get<Signout>())
+    ..add(AppStarted()),
 );
 final discoverBloc = BlocProvider(
   create: (_) => DiscoverBloc(

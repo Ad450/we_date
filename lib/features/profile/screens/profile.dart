@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:flutter_progress_hud/flutter_progress_hud.dart";
 import "package:image_picker/image_picker.dart";
 import "package:we_date/core/utils/functions.dart";
 import "package:we_date/core/utils/image_urls.dart";
@@ -8,7 +7,6 @@ import "package:we_date/core/widget/textFormField.dart";
 import "package:we_date/core/widget/we_date_button.dart";
 import "package:we_date/features/profile/screens/gender.dart";
 import "package:we_date/features/profile/screens/state/profile_bloc.dart";
-import "package:we_date/features/profile/screens/state/profile_events.dart";
 import "package:we_date/features/profile/screens/state/profile_state.dart";
 import 'package:we_date/features/profile/screens/widgets/picture_avatar.dart';
 
@@ -61,8 +59,12 @@ class _ProfileState extends State<Profile> {
           children: [
             Stack(
               children: [
-                Image.asset(ImageURLS.profile,
-                    fit: BoxFit.cover, width: double.infinity, height: MediaQuery.of(context).size.height),
+                Image.asset(
+                  ImageURLS.profile,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height,
+                ),
                 const Positioned(
                   left: 20,
                   top: 100,

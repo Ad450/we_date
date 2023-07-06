@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:we_date/core/utils/classes.dart';
 import 'package:we_date/features/auth/data/usecases/check_auth_status.dart';
+import 'package:we_date/features/auth/data/usecases/signout.dart';
 import 'package:we_date/features/auth/data/usecases/signup_or_login_with_fb.dart';
 import 'package:we_date/features/auth/data/usecases/signup_or_login_with_google.dart';
 import 'package:we_date/features/auth/state/auth_events.dart';
@@ -11,15 +12,18 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
   final SignupOrLoginWithFacebook signupOrLoginWithFacebook;
   final SignupOrLoginWithGoogle signupOrLoginWithGoogle;
   final CheckAuthStatus checkAuthStatus;
+  final Signout signout;
 
   AuthenticationBloc({
     required this.signupOrLoginWithFacebook,
     required this.signupOrLoginWithGoogle,
     required this.checkAuthStatus,
+    required this.signout,
   }) : super(const AuthState.initial()) {
     on<SignupWithGoogleEvent>(authWithGoogle);
     on<SignupWithFacebookEvent>(authWithFacebook);
     on<AppStarted>(checkAuthenticationStatus);
+    on<SignoutEvent>(signoutUser);
   }
 
   Future<void> authWithGoogle(AuthEvent event, Emitter<AuthState> emit) async {
@@ -47,6 +51,14 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
     result.fold(
       (l) => emit(const AuthState.unAuthenticated()),
       (r) => emit(const AuthState.authenticated()),
+    );
+  }
+
+  Future<void> signoutUser(SignoutEvent event, Emitter<AuthState> emit) async {
+    final result = await signout(const NoParam());
+    result.fold(
+      (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
+      (r) => emit(const AuthState.unAuthenticated()),
     );
   }
 }

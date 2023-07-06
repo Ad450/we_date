@@ -5,6 +5,7 @@ import 'package:we_date/core/utils/constants.dart';
 import 'package:we_date/core/utils/state_providers.dart';
 import 'package:we_date/features/auth/screens/auth_landing_page.dart';
 import 'package:we_date/features/auth/state/auth_bloc.dart';
+import 'package:we_date/features/auth/state/auth_events.dart';
 import 'package:we_date/features/auth/state/auth_state.dart';
 import 'package:we_date/features/home/home.dart';
 import 'package:we_date/features/onboarding/screens/onboarding.dart';
@@ -35,11 +36,22 @@ class WeDate extends StatelessWidget {
   }
 }
 
-class StartWeDate extends StatelessWidget {
+class StartWeDate extends StatefulWidget {
   final bool? showAuthPage;
   final bool? isAuthenticated;
 
   const StartWeDate({super.key, required this.showAuthPage, required this.isAuthenticated});
+
+  @override
+  State<StartWeDate> createState() => _StartWeDateState();
+}
+
+class _StartWeDateState extends State<StartWeDate> {
+  @override
+  void initState() {
+    super.initState();
+    // context.read<AuthenticationBloc>().add(SignoutEvent());
+  }
 
   // @override
   @override
@@ -50,13 +62,23 @@ class StartWeDate extends StatelessWidget {
               unAuthenticated: (_) => true,
             ),
         builder: (_, state) {
-          if (showAuthPage != null) {
-            return const AuthLandingPage();
-          }
-          if (showAuthPage == null) {
-            return const Onboarding();
-          }
-          return const HomeScreen();
+          // print(state);
+          // if (widget.showAuthPage != null) {
+          //   return const AuthLandingPage();
+          // }
+          // if (widget.showAuthPage == null) {
+          //   return const Onboarding();
+          // }
+          // return const HomeScreen();
+          return state.maybeMap(
+              orElse: () => const AuthLandingPage(),
+              unAuthenticated: (state) {
+                // if (widget.showAuthPage != null) {
+                //   return const AuthLandingPage();
+                // }
+                return const AuthLandingPage();
+              },
+              authenticated: (_) => const HomeScreen());
         });
     // isAuthenticated != null && isAuthenticated!
     //   ? const HomeScreen()

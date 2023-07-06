@@ -11,16 +11,27 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
-  late LiquidController liquidController;
+  late LiquidController? liquidController;
 
   @override
   void initState() {
     super.initState();
-    liquidController = LiquidController();
+    if (mounted) {
+      liquidController = LiquidController();
+    }
+  }
+
+  @override
+  void dispose() {
+    liquidController = null;
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!mounted) {
+      return const Scaffold();
+    }
     return LiquidSwipe(
       liquidController: liquidController,
       slideIconWidget: const Icon(Icons.arrow_back_ios, color: Colors.black),
