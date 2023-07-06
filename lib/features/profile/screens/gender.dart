@@ -1,11 +1,23 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:we_date/core/utils/image_urls.dart";
 import "package:we_date/core/widget/we_date_button.dart";
 import "package:we_date/features/home/home.dart";
+import "package:we_date/features/profile/screens/state/profile_bloc.dart";
+import "package:we_date/features/profile/screens/state/profile_events.dart";
 import "package:we_date/features/profile/screens/widgets/selectable_container.dart";
 
 class GenderScreen extends StatefulWidget {
-  const GenderScreen({super.key});
+  final String firstName;
+  final String lastName;
+  final String? xfile;
+
+  const GenderScreen({
+    super.key,
+    required this.firstName,
+    required this.lastName,
+    required this.xfile,
+  });
 
   @override
   State<GenderScreen> createState() => _GenderScreenState();
@@ -13,6 +25,19 @@ class GenderScreen extends StatefulWidget {
 
 class _GenderScreenState extends State<GenderScreen> {
   var selectedGender = "";
+
+  void _handleConfirmProfile() {
+    if (mounted) {
+      context.read<ProfileBloc>().add(
+            UpdateProfileEvent(
+              gender: selectedGender,
+              firstName: widget.firstName,
+              lastName: widget.lastName,
+              profileImageURL: widget.xfile,
+            ),
+          );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +121,12 @@ class _GenderScreenState extends State<GenderScreen> {
                   textColor: Colors.white,
                   backgroundColor: const Color.fromARGB(255, 183, 61, 122),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()),
-                    );
+                    if (selectedGender.isNotEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      );
+                    }
                   },
                 ),
               ],

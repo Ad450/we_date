@@ -3,6 +3,7 @@ import 'package:location/location.dart';
 import 'package:we_date/core/datastore/database_client.dart';
 import 'package:we_date/core/di/configure_dependencies.dart';
 import 'package:we_date/core/models/profile_model.dart';
+import 'package:we_date/core/utils/error_messages.dart';
 import 'package:we_date/core/utils/errors.dart';
 import 'package:we_date/core/utils/functions.dart';
 
@@ -25,6 +26,8 @@ class DiscoverRemoteDatasourceImpl implements DiscoverRemoteDatasource {
         "uid",
         user!.uid,
       );
+      if(preferencesSnapshot == null) throw DbFailure(DOCUMENT_NOT_FOUND);
+
       final preferences = preferencesSnapshot.data();
       final preferredAge = int.parse(preferences["age"]);
       final preferredHeight = int.parse(preferences["height"]);

@@ -26,8 +26,8 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
     emit(const AuthState.loading());
     final result = await signupOrLoginWithGoogle(const NoParam());
     result.fold(
-          (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
-          (r) => emit(AuthState.error(payload: AuthStatePayload(error: null, user: r))),
+      (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
+      (r) => emit(const AuthState.authenticated()),
     );
   }
 
@@ -35,8 +35,8 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
     emit(const AuthState.loading());
     final result = await signupOrLoginWithFacebook(const NoParam());
     result.fold(
-          (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
-          (r) => emit(AuthState.error(payload: AuthStatePayload(error: null, user: r))),
+      (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
+      (r) => emit(const AuthState.authenticated()),
     );
   }
 
@@ -45,10 +45,8 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> checkAuthenticationStatus(AppStarted event, Emitter<AuthState> emit) async {
     final result = await checkAuthStatus(const NoParam());
     result.fold(
-          (l) => emit(const AuthState.unAuthenticated()),
-          (r) => emit(const AuthState.authenticated()),
+      (l) => emit(const AuthState.unAuthenticated()),
+      (r) => emit(const AuthState.authenticated()),
     );
   }
-
-
 }

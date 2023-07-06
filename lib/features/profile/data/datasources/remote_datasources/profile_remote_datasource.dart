@@ -5,7 +5,7 @@ import 'package:we_date/core/utils/error_messages.dart';
 
 abstract class ProfileRemoteDatasource {
   Future<void> updateProfile({
-    required String gender,
+    required String? gender,
     String? firstName,
     String? lastName,
     String? profileImageURL,
@@ -19,7 +19,7 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
 
   @override
   Future<void> updateProfile({
-    required String gender,
+    required String? gender,
     String? firstName,
     String? lastName,
     String? profileImageURL,

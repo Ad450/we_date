@@ -81,6 +81,7 @@ Future<void> updateProfileOnLocationChange(
   }
 
   final doc = await db.getByIdentifier(Collections.profile, "uid", user.uid);
+  if (doc == null) return;
   final profile = ProfileModel.fromJson(doc.data());
 
   location.onLocationChanged.listen((event) {

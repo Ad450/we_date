@@ -9,10 +9,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<void> updateProfile(
-      {required String gender,
-      String? firstName,
-      String? lastName,
-      String? profileImageURL}) async {
+      {required String? gender, String? firstName, String? lastName, String? profileImageURL}) async {
     return await guardedApiCall(() => _profileRemoteDatasource.updateProfile(
           gender: gender,
           firstName: firstName,

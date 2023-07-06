@@ -24,7 +24,7 @@ void main() async {
       Injector.getIt.get<DatabaseClient>(),
     );
     showAuthPage = await Injector.getIt.get<CustomSharedPreferences>().getBool(hasSeenOrSkippedSplash);
-    isAuthenticated = await Injector.getIt.get<CustomSharedPreferences>().getBool(authenticated);
+    // isAuthenticated = await Injector.getIt.get<CustomSharedPreferences>().getBool(authenticated);
   } catch (e) {
     logger.e(e);
   }

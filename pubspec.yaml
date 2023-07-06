@@ -36,6 +36,7 @@ dependencies:
   location: ^4.4.0
   logger: ^1.4.0
   shared_preferences: ^2.2.0
+  flutter_progress_hud: ^2.0.2
 
 dev_dependencies:
   flutter_test:

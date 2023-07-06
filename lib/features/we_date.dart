@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:we_date/core/datastore/shared_preferences.dart';
+import 'package:we_date/core/di/configure_dependencies.dart';
+import 'package:we_date/core/utils/constants.dart';
 import 'package:we_date/core/utils/state_providers.dart';
 import 'package:we_date/features/auth/screens/auth_landing_page.dart';
+import 'package:we_date/features/auth/state/auth_bloc.dart';
+import 'package:we_date/features/auth/state/auth_state.dart';
 import 'package:we_date/features/home/home.dart';
 import 'package:we_date/features/onboarding/screens/onboarding.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +19,13 @@ class WeDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [...stateProviders],
+      providers: [
+        toggleDiscoverDetailsBloc,
+        authBloc,
+        storiesBloc,
+        profileBloc,
+        discoverBloc,
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'WeDate',
@@ -33,10 +44,24 @@ class StartWeDate extends StatelessWidget {
   // @override
   @override
   Widget build(BuildContext context) {
-    return isAuthenticated != null && isAuthenticated!
-        ? const HomeScreen()
-        : showAuthPage != null
-            ? const AuthLandingPage()
-            : const Onboarding();
+    return BlocBuilder<AuthenticationBloc, AuthState>(
+        buildWhen: (_, state) => state.maybeMap(
+              orElse: () => false,
+              unAuthenticated: (_) => true,
+            ),
+        builder: (_, state) {
+          if (showAuthPage != null) {
+            return const AuthLandingPage();
+          }
+          if (showAuthPage == null) {
+            return const Onboarding();
+          }
+          return const HomeScreen();
+        });
+    // isAuthenticated != null && isAuthenticated!
+    //   ? const HomeScreen()
+    //   : showAuthPage != null
+    //       ? const AuthLandingPage()
+    //       : const Onboarding();
   }
 }

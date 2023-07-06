@@ -7,7 +7,7 @@ import '../utils/error_messages.dart';
 abstract class DatabaseClient {
   Future<String> save<T extends Collections>(T collection, dynamic data);
 
-  Future<QueryDocumentSnapshot<Map<String, dynamic>>> getByIdentifier<T extends Collections>(
+  Future<QueryDocumentSnapshot<Map<String, dynamic>>?> getByIdentifier<T extends Collections>(
     T collection,
     String identifierkey,
     String identifierValue,
@@ -33,6 +33,8 @@ abstract class DatabaseClient {
     required preferredAge,
     required preferredHeight,
   });
+
+  Future<void> deleteDocument<T extends Collections>(T collection, String identifier, String identifierKey);
 }
 
 enum Collections { user, profile, story, preferences }
@@ -62,17 +64,19 @@ class DatabaseClientImpl implements DatabaseClient {
   }
 
   @override
-  Future<QueryDocumentSnapshot<Map<String, dynamic>>> getByIdentifier<T extends Collections>(
+  Future<QueryDocumentSnapshot<Map<String, dynamic>>?> getByIdentifier<T extends Collections>(
     T collection,
     String identifierkey,
     String identifierValue,
   ) async {
     try {
       final collectionRef = await firestore.collection(collection.name);
-      return await collectionRef
-          .where(identifierkey, isEqualTo: identifierValue)
-          .get()
-          .then((snapshot) => snapshot.docs.first);
+      return await collectionRef.where(identifierkey, isEqualTo: identifierValue).get().then((snapshot) {
+        if (snapshot.docs.isEmpty) {
+          return null;
+        }
+        return snapshot.docs.first;
+      });
     } catch (e) {
       throw DbFailure(e.toString());
     }
@@ -146,6 +150,24 @@ class DatabaseClientImpl implements DatabaseClient {
           .where("height", isLessThanOrEqualTo: int.parse(preferredHeight + 1))
           .where("age", isLessThanOrEqualTo: int.parse(preferredAge + 2));
       return query.get().then((snapshot) => snapshot.docs);
+    } catch (e) {
+      throw DbFailure(e.toString());
+    }
+  }
+
+  @override
+  Future<void> deleteDocument<T extends Collections>(
+    T collection,
+    String identifierKey,
+    String identifierValue,
+  ) async {
+    try {
+      final collectionRef = await firestore.collection(collection.name);
+      final doc = await getByIdentifier(collection, identifierKey, identifierValue);
+      if (doc == null) {
+        throw DbFailure(DOCUMENT_NOT_FOUND);
+      }
+      await collectionRef.doc(doc.id).delete();
     } catch (e) {
       throw DbFailure(e.toString());
     }

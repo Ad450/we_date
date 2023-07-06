@@ -8,6 +8,9 @@ class WeDateTextFormField extends StatelessWidget {
   final bool? showLeadingIcon;
   final double? width;
   final Icon? icon;
+  final VoidCallback? onEditingComplete;
+  final FocusNode? focusNode;
+
   const WeDateTextFormField({
     super.key,
     required this.controller,
@@ -17,12 +20,14 @@ class WeDateTextFormField extends StatelessWidget {
     this.showLeadingIcon,
     this.width,
     this.icon,
+    this.onEditingComplete,
+    this.focusNode,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 60,
       width: width ?? double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -34,6 +39,9 @@ class WeDateTextFormField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
+        focusNode: focusNode,
+        onEditingComplete: onEditingComplete,
+        validator: validator,
         decoration: InputDecoration(
           hintText: hintText,
           border: InputBorder.none,

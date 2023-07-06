@@ -27,7 +27,7 @@ class UpdateProfile implements Usecase<VoidType, UpdateProfileParam> {
 class UpdateProfileParam {
   final String? firstName;
   final String? lastName;
-  final String gender;
+  final String? gender;
   final String? profileImageURL;
 
   UpdateProfileParam({
