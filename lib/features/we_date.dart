@@ -3,6 +3,7 @@ import 'package:we_date/core/datastore/shared_preferences.dart';
 import 'package:we_date/core/di/configure_dependencies.dart';
 import 'package:we_date/core/utils/constants.dart';
 import 'package:we_date/core/utils/state_providers.dart';
+import 'package:we_date/core/widget/app_theme.dart';
 import 'package:we_date/features/auth/screens/auth_landing_page.dart';
 import 'package:we_date/features/auth/state/auth_bloc.dart';
 import 'package:we_date/features/auth/state/auth_events.dart';
@@ -30,6 +31,7 @@ class WeDate extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'WeDate',
+        theme: appLightTheme,
         home: StartWeDate(showAuthPage: showAuthPage, isAuthenticated: isAuthenticated),
       ),
     );

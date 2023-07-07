@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
 
 class WeDateButton extends StatelessWidget {
-  final String text;
-  final double? textPaddingLeft;
-  final double? textPaddingRight;
-  final double? textPaddingTop;
-  final double? textPaddingBottom;
+  final double? paddingLeft;
+  final double? paddingRight;
+  final double? paddingTop;
+  final double? paddingBottom;
   final VoidCallback onPressed;
   final double? textFontSize;
   final Color? backgroundColor;
   final Color? textColor;
   final double? width;
   final double? height;
+  final ButtonStyle? buttonStyle;
+  final TextStyle? textStyle;
+  final bool? hasLeading;
+  final Widget? leading;
+  final Widget child;
 
-  const WeDateButton(
-      {Key? key,
-      required this.text,
-      required this.onPressed,
-      this.textPaddingBottom,
-      this.textPaddingLeft,
-      this.textPaddingRight,
-      this.textPaddingTop,
-      this.textFontSize,
-      this.backgroundColor,
-      this.textColor,
-      this.width,
-      this.height})
-      : super(key: key);
+  const WeDateButton({
+    Key? key,
+    required this.onPressed,
+    required this.child,
+    this.paddingBottom,
+    this.paddingLeft,
+    this.paddingRight,
+    this.paddingTop,
+    this.textFontSize,
+    this.backgroundColor,
+    this.textColor,
+    this.width,
+    this.height,
+    this.buttonStyle,
+    this.textStyle,
+    this.hasLeading,
+    this.leading,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,27 +42,35 @@ class WeDateButton extends StatelessWidget {
       width: width ?? MediaQuery.of(context).size.width,
       height: height,
       child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(backgroundColor ?? Colors.black),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-          ),
-        ),
+        style: buttonStyle,
         onPressed: onPressed,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(
-            textPaddingLeft ?? 20,
-            textPaddingTop ?? 15,
-            textPaddingRight ?? 20,
-            textPaddingBottom ?? 15,
+          padding: EdgeInsets.only(
+            top: paddingTop ?? 0,
+            bottom: paddingBottom ?? 0,
+            left: paddingLeft ?? 0,
+            right: paddingRight ?? 0,
           ),
-          child: Text(
-            text,
-            style: TextStyle(fontSize: textFontSize ?? 25, color: textColor),
-          ),
+          child: child,
         ),
+        //
+        // hasLeading != null && hasLeading!
+        //     ? Padding(
+        //         padding: EdgeInsets.only(
+        //           top: paddingTop ?? 0,
+        //           bottom: paddingBottom ?? 0,
+        //           left: paddingLeft ?? 0,
+        //           right: paddingRight ?? 0,
+        //         ),
+        //         child: Row(children: <Widget>[
+        //           leading ?? const SizedBox(),
+        //           Text(
+        //             text,
+        //             style: textStyle,
+        //           ),
+        //         ]),
+        //       )
+        //     : Text(text, style: textStyle),
       ),
     );
   }

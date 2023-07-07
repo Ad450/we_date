@@ -85,19 +85,20 @@ class _SignupState extends State<Signup> {
                             hintText: "password",
                           ),
                           const SizedBox(height: 40),
-                          WeDateButton(
-                            text: "Continue",
-                            textFontSize: 20,
-                            textColor: Colors.white,
-                            backgroundColor: const Color.fromARGB(255, 183, 61, 122),
-                            onPressed: () {
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(builder: (context) => const Profile()),
-                                (route) => false,
-                              );
-                            },
-                          ),
+                          // WeDateButton(
+                          //   leading: null,
+                          //   text: "Continue",
+                          //   textFontSize: 20,
+                          //   textColor: Colors.white,
+                          //   backgroundColor: const Color.fromARGB(255, 183, 61, 122),
+                          //   onPressed: () {
+                          //     Navigator.pushAndRemoveUntil(
+                          //       context,
+                          //       MaterialPageRoute(builder: (context) => const Profile()),
+                          //       (route) => false,
+                          //     );
+                          //   },
+                          // ),
                         ],
                       )),
                     ],

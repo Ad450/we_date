@@ -31,13 +31,13 @@ class _GenderScreenState extends State<GenderScreen> {
   void _handleUpdateProfile() {
     if (mounted) {
       context.read<ProfileBloc>().add(
-        UpdateProfileEvent(
-          gender: selectedGender,
-          firstName: widget.firstName,
-          lastName: widget.lastName,
-          profileImageURL: widget.xfile,
-        ),
-      );
+            UpdateProfileEvent(
+              gender: selectedGender,
+              firstName: widget.firstName,
+              lastName: widget.lastName,
+              profileImageURL: widget.xfile,
+            ),
+          );
     }
   }
 
@@ -48,9 +48,7 @@ class _GenderScreenState extends State<GenderScreen> {
         action: SnackBarAction(
           label: 'OKAY',
           textColor: Colors.yellow,
-          onPressed: ScaffoldMessenger
-              .of(context)
-              .removeCurrentSnackBar,
+          onPressed: ScaffoldMessenger.of(context).removeCurrentSnackBar,
         ),
       ),
     );
@@ -63,17 +61,14 @@ class _GenderScreenState extends State<GenderScreen> {
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
+            height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(
-                    ImageURLS.profile,
-                  ),
-                  fit: BoxFit.cover,
-                )),
+              image: AssetImage(
+                ImageURLS.profile,
+              ),
+              fit: BoxFit.cover,
+            )),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
@@ -149,24 +144,24 @@ class _GenderScreenState extends State<GenderScreen> {
                               });
                             },
                             updateProfileError: (state) => _showSnackBar(state.message),
-                            updateProfileSuccess: (_) =>
-                                Navigator.pushAndRemoveUntil(
+                            updateProfileSuccess: (_) => Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(builder: (context) => const HomeScreen()),
-                                      (route) => false,
+                                  (route) => false,
                                 ));
                       },
-                      child: WeDateButton(
-                        text: "Continue",
-                        textFontSize: 20,
-                        textColor: Colors.white,
-                        backgroundColor: const Color.fromARGB(255, 183, 61, 122),
-                        onPressed: () {
-                          if (selectedGender.isNotEmpty) {
-                            _handleUpdateProfile();
-                          }
-                        },
-                      ),
+                      // child: WeDateButton(
+                      //   text: "Continue",
+                      //   textFontSize: 20,
+                      //   textColor: Colors.white,
+                      //   backgroundColor: const Color.fromARGB(255, 183, 61, 122),
+                      //   leading: null,
+                      //   onPressed: () {
+                      //     if (selectedGender.isNotEmpty) {
+                      //       _handleUpdateProfile();
+                      //     }
+                      //   },
+                      // ),
                     ),
                   ],
                 ),

@@ -136,25 +136,26 @@ class _ProfileState extends State<Profile> {
                                     updateProfileLoading: (_) => true,
                                   ),
                                   listener: (_, state) {},
-                                  child: WeDateButton(
-                                    text: "Confirm",
-                                    textFontSize: 20,
-                                    textColor: Colors.white,
-                                    backgroundColor: const Color.fromARGB(255, 183, 61, 122),
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => GenderScreen(
-                                                  firstName: _firstNameController.text,
-                                                  lastName: _lastNameController.text,
-                                                  xfile: xfile?.path)),
-                                          (route) => false,
-                                        );
-                                      }
-                                    },
-                                  ),
+                                  // child: WeDateButton(
+                                  //   leading: null,
+                                  //   text: "Confirm",
+                                  //   textFontSize: 20,
+                                  //   textColor: Colors.white,
+                                  //   backgroundColor: const Color.fromARGB(255, 183, 61, 122),
+                                  //   onPressed: () {
+                                  //     if (_formKey.currentState!.validate()) {
+                                  //       Navigator.pushAndRemoveUntil(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (context) => GenderScreen(
+                                  //                 firstName: _firstNameController.text,
+                                  //                 lastName: _lastNameController.text,
+                                  //                 xfile: xfile?.path)),
+                                  //         (route) => false,
+                                  //       );
+                                  //     }
+                                  //   },
+                                  // ),
                                 ),
                               ],
                             )),

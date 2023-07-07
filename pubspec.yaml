@@ -37,6 +37,8 @@ dependencies:
   logger: ^1.4.0
   shared_preferences: ^2.2.0
   flutter_progress_hud: ^2.0.2
+  google_fonts: ^4.0.4
+  hexcolor: ^3.0.1
 
 dev_dependencies:
   flutter_test:
