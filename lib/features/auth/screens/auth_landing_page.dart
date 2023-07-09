@@ -105,7 +105,9 @@ class _AuthLandingPageState extends State<AuthLandingPage> {
                     ),
                     verticalSpace(10),
                     WeDateButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage1()));
+                      },
                       paddingTop: 10,
                       paddingBottom: 10,
                       buttonStyle: ButtonStyle(
@@ -179,35 +181,36 @@ class _AuthLandingPageState extends State<AuthLandingPage> {
                     ),
                     verticalSpace(20),
                     RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(children: [
-                          TextSpan(
-                            text: "By signing up you are agreeing to our \n",
-                            style: TextStyle(
-                              color: Colors.grey.withOpacity(0.8),
-                            ),
+                      textAlign: TextAlign.center,
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: "By signing up you are agreeing to our \n",
+                          style: TextStyle(
+                            color: Colors.grey.withOpacity(0.8),
                           ),
-                          TextSpan(
-                            text: "Terms of Use ",
-                            style: theme.textTheme.labelLarge?.copyWith(
-                              color: googleTextColor,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        ),
+                        TextSpan(
+                          text: "Terms of Use ",
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            color: googleTextColor,
+                            fontWeight: FontWeight.w600,
                           ),
-                          TextSpan(
-                            text: "and ",
-                            style: TextStyle(
-                              color: Colors.grey.withOpacity(0.8),
-                            ),
+                        ),
+                        TextSpan(
+                          text: "and ",
+                          style: TextStyle(
+                            color: Colors.grey.withOpacity(0.8),
                           ),
-                          TextSpan(
-                            text: "Privacy Policy",
-                            style: theme.textTheme.labelLarge?.copyWith(
-                              color: googleTextColor,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        ),
+                        TextSpan(
+                          text: "Privacy Policy",
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            color: googleTextColor,
+                            fontWeight: FontWeight.w600,
                           ),
-                        ]))
+                        ),
+                      ]),
+                    )
                   ],
                 ),
               ),

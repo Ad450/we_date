@@ -3,6 +3,7 @@ import "dart:io";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:image_picker/image_picker.dart";
+import "package:we_date/core/widget/app_theme.dart";
 
 class PictureAvatar extends StatelessWidget {
   final VoidCallback handlePickImage;
@@ -18,22 +19,24 @@ class PictureAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 180,
+    final theme = Theme.of(context);
+    return GestureDetector(
+      onTap: handlePickImage,
       child: Stack(
         children: [
           Container(
-            width: 160,
-            height: 300,
+            width: 80,
+            height: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: const Color.fromARGB(255, 183, 61, 122),
+              // borderRadius: BorderRadius.circularar(100),
+              color: profileColor,
+              shape: BoxShape.circle,
             ),
             child: !isFileSelected
-                ? const Icon(
-                    Icons.person,
-                    size: 120,
-                    color: Colors.grey,
+                ? Icon(
+                    Icons.camera_enhance_outlined,
+                    size: 40,
+                    color: Colors.grey.withOpacity(0.4),
                   )
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(100),
@@ -44,17 +47,18 @@ class PictureAvatar extends StatelessWidget {
                   ),
           ),
           Positioned(
-              bottom: 0,
-              right: 5,
-              child: CircleAvatar(
-                backgroundColor: const Color.fromARGB(255, 183, 61, 122),
-                radius: 25,
-                child: IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.camera),
-                  onPressed: handlePickImage,
-                  color: Colors.white,
-                ),
-              ))
+            bottom: 10,
+            right: 5,
+            child: Container(
+              height: 30,
+              width: 20,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primary,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.camera, size: 10, color: Colors.white),
+            ),
+          )
         ],
       ),
     );
