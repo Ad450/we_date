@@ -40,7 +40,9 @@ class _ProfilePage3State extends State<ProfilePage3> {
                 Row(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       child: Icon(
                         Icons.arrow_back_ios,
                         color: theme.colorScheme.primary,
@@ -70,7 +72,7 @@ class _ProfilePage3State extends State<ProfilePage3> {
               padding: EdgeInsets.zero,
               width: getVisibleScreenWidth(context) - 30,
               lineHeight: 3.0,
-              percent: 0.5,
+              percent: 0.75,
               progressColor: theme.colorScheme.secondary,
             ),
             verticalSpace(25),
@@ -124,7 +126,7 @@ class _ProfilePage3State extends State<ProfilePage3> {
                     );
                   }),
             ),
-            verticalSpace(100),
+            verticalSpace(150),
             WeDateButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage3()));

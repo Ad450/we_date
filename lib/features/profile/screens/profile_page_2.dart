@@ -37,7 +37,9 @@ class _ProfilePage2State extends State<ProfilePage2> {
                 Row(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       child: Icon(
                         Icons.arrow_back_ios,
                         color: theme.colorScheme.primary,
