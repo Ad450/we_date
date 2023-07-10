@@ -24,30 +24,20 @@ class PictureAvatar extends StatelessWidget {
       onTap: handlePickImage,
       child: Stack(
         children: [
-          Container(
-            width: 80,
-            height: 120,
-            decoration: BoxDecoration(
-              // borderRadius: BorderRadius.circularar(100),
-              color: profileColor,
-              shape: BoxShape.circle,
-            ),
+          CircleAvatar(
+            radius: 50,
+            backgroundColor: !isFileSelected ? profileColor : null,
+            backgroundImage: isFileSelected ? FileImage(File(xfile!.path)) : null,
             child: !isFileSelected
                 ? Icon(
                     Icons.camera_enhance_outlined,
                     size: 40,
                     color: Colors.grey.withOpacity(0.4),
                   )
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image(
-                      image: FileImage(File(xfile!.path)),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                : null,
           ),
           Positioned(
-            bottom: 10,
+            bottom: 4,
             right: 5,
             child: Container(
               height: 30,

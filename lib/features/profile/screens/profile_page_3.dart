@@ -8,6 +8,7 @@ import 'package:we_date/core/widget/rounded_interest_container.dart';
 import 'package:we_date/core/widget/selectable_religion_container.dart';
 import 'package:we_date/core/widget/spacer.dart';
 import 'package:we_date/core/widget/we_date_button.dart';
+import 'package:we_date/features/profile/screens/profile_page_4.dart';
 
 class ProfilePage3 extends StatefulWidget {
   const ProfilePage3({Key? key}) : super(key: key);
@@ -129,7 +130,7 @@ class _ProfilePage3State extends State<ProfilePage3> {
             verticalSpace(150),
             WeDateButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage3()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage4()));
               },
               paddingTop: 15,
               paddingBottom: 15,

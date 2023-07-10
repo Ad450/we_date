@@ -21,3 +21,15 @@ List<Map<String, dynamic>> interests = [
   {"text": "Painting", "image": ImageURLS.drawingImg, "isSelected": false},
   {"text": "Art", "image": ImageURLS.artsImg, "isSelected": false},
 ];
+
+List<Map<String, dynamic>> publicPhotos = [
+  {"isSelected": false, "xfile": null},
+  {"isSelected": false, "xfile": null},
+  {"isSelected": false, "xfile": null},
+];
+
+List<Map<String, dynamic>> privatePhotos = [
+  {"isSelected": false, "xfile": null},
+  {"isSelected": false, "xfile": null},
+  {"isSelected": false, "xfile": null},
+];

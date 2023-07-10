@@ -108,13 +108,14 @@ class _ProfilePage1State extends State<ProfilePage1> {
               ),
               verticalSpace(15),
               PictureAvatar(
-                handlePickImage: () {},
+                handlePickImage: _handlePickImage,
                 isFileSelected: _isFileSelected,
                 xfile: xfile,
               ),
+              verticalSpace(5),
               Text(
                 "Profile Picture",
-                style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.surface, fontSize: 17),
+                style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.surface, fontSize: 15),
               ),
               verticalSpace(20),
               Form(
@@ -128,38 +129,42 @@ class _ProfilePage1State extends State<ProfilePage1> {
                       decoration: const InputDecoration(hintText: "Username"),
                     ),
                     verticalSpace(10),
-                    Row(
-                      children: [
-                        const DateOfBirthPicker(),
-                        horizontalSpace(10),
-                        SelectableGenderContainer(
-                          text: "Male",
-                          hasLeading: true,
-                          leadingIcon: Icons.male,
-                          width: 80,
-                          height: 50,
-                          onSelect: () {
-                            setState(() {
-                              selectedGender = "Male";
-                            });
-                          },
-                          isSelected: selectedGender == "Male",
-                        ),
-                        horizontalSpace(10),
-                        SelectableGenderContainer(
-                          text: "Female",
-                          hasLeading: true,
-                          leadingIcon: Icons.female,
-                          width: 80,
-                          height: 50,
-                          onSelect: () {
-                            setState(() {
-                              selectedGender = "Female";
-                            });
-                          },
-                          isSelected: selectedGender == "Female",
-                        ),
-                      ],
+                    SingleChildScrollView(
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          const DateOfBirthPicker(),
+                          horizontalSpace(10),
+                          SelectableGenderContainer(
+                            text: "Male",
+                            hasLeading: true,
+                            leadingIcon: Icons.male,
+                            width: 80,
+                            height: 50,
+                            onSelect: () {
+                              setState(() {
+                                selectedGender = "Male";
+                              });
+                            },
+                            isSelected: selectedGender == "Male",
+                          ),
+                          horizontalSpace(10),
+                          SelectableGenderContainer(
+                            text: "Female",
+                            hasLeading: true,
+                            leadingIcon: Icons.female,
+                            width: 80,
+                            height: 50,
+                            onSelect: () {
+                              setState(() {
+                                selectedGender = "Female";
+                              });
+                            },
+                            isSelected: selectedGender == "Female",
+                          ),
+                        ],
+                      ),
                     ),
                     verticalSpace(15),
                     Align(
@@ -312,7 +317,7 @@ class _ProfilePage1State extends State<ProfilePage1> {
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    verticalSpace(15),
+                    verticalSpace(35),
                     WeDateButton(
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage2()));
