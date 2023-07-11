@@ -23,44 +23,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 36, 40, 66),
       body: SafeArea(
         child: <Widget>[
+          const Explore(),
           const NearbyScreen(),
-          const Discover(),
-          const Favorites(),
           Container(height: double.infinity, color: Colors.transparent),
           const CreateStory(),
         ][selectedIndex],
       ),
-      bottomNavigationBar: Theme(
-        data: ThemeData(
-          canvasColor: const Color.fromARGB(255, 36, 40, 66),
-        ),
-        child: Container(
-          margin: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30), border: Border.all(width: 2, color: Colors.black12)),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: BottomNavigationBar(
-              currentIndex: selectedIndex,
-              items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.circle), label: "Nearby"),
-                BottomNavigationBarItem(icon: Icon(Icons.content_copy), label: "Discover"),
-                BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorites"),
-                BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.message), label: "Message"),
-                BottomNavigationBarItem(icon: Icon(Icons.telegram_outlined), label: "Profile"),
-              ],
-              onTap: _onNavigationBarItemSelect,
-              selectedItemColor: Colors.purple[400],
-              unselectedItemColor: Colors.grey,
-              showSelectedLabels: false,
-              type: BottomNavigationBarType.shifting,
-            ),
-          ),
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        items: const [
+          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.periscope), label: "Explore"),
+          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.heartCircleBolt), label: "Matches"),
+          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.message), label: "Chat"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Me"),
+        ],
+        onTap: _onNavigationBarItemSelect,
+        type: BottomNavigationBarType.shifting,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
       ),
     );
   }

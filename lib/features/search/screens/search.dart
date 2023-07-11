@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_date/core/utils/image_urls.dart';
 import 'package:we_date/core/widget/spacer.dart';
 import 'package:we_date/features/home/home.dart';
 
@@ -58,12 +59,10 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [theme.colorScheme.primary, theme.colorScheme.secondary],
-          stops: const [0.05, 0.9],
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(ImageURLS.searchImg),
+          fit: BoxFit.fill,
         ),
       ),
       child: Padding(

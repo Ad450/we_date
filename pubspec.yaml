@@ -41,6 +41,8 @@ dependencies:
   hexcolor: ^3.0.1
   percent_indicator: ^4.2.3
   flutter_ruler_picker: ^1.0.3
+  swipeable_card_stack: ^0.0.5
+  card_swiper: ^3.0.1
 
 dev_dependencies:
   flutter_test:

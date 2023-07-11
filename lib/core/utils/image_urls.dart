@@ -20,4 +20,5 @@ class ImageURLS {
   static const String sports = "assets/sports_img.jpg";
   static const String swimmingImg = "assets/swimming_img.jpg";
   static const String travellingImg = "assets/travelling_img.jpg";
+  static const String searchImg = "assets/search_image.jpg";
 }

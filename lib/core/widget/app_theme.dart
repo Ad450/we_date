@@ -49,6 +49,11 @@ ThemeData appLightTheme = ThemeData(
     titleLarge: GoogleFonts.lato(color: Colors.black87),
     bodySmall: GoogleFonts.lato(color: Colors.black54),
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedIconTheme: const IconThemeData(color: Colors.pink, weight: 10),
+    unselectedIconTheme: IconThemeData(color: Colors.grey.withOpacity(0.4), weight: 10),
+    selectedItemColor: Colors.pink,
+  ),
 );
 
 ThemeData appDarkTheme = ThemeData();
