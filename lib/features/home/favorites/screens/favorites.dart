@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:we_date/core/utils/image_urls.dart";
 import "package:we_date/core/widget/textFormField.dart";
-import "package:we_date/features/home/nearby/widgets/nearbyTile.dart";
+import "package:we_date/features/home/matches/widgets/nearbyTile.dart";
 
 class Favorites extends StatefulWidget {
   const Favorites({super.key});
@@ -12,6 +12,7 @@ class Favorites extends StatefulWidget {
 
 class _FavoritesState extends State<Favorites> {
   final _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Padding(

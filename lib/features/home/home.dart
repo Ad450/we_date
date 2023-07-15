@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import 'package:we_date/features/home/discover/screens/discover.dart';
 import "package:we_date/features/home/favorites/screens/favorites.dart";
-import "package:we_date/features/home/nearby/screens/nearby.dart";
+import "package:we_date/features/home/matches/screens/matches.dart";
 import "package:we_date/features/home/stories/screens/create_story.dart";
 
 class HomeScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: <Widget>[
           const Explore(),
-          const NearbyScreen(),
+          const MatchesScreen(),
           Container(height: double.infinity, color: Colors.transparent),
           const CreateStory(),
         ][selectedIndex],
