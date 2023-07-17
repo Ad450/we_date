@@ -1,9 +1,7 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 import 'package:we_date/core/widget/spacer.dart';
 import 'package:we_date/features/home/discover/screens/widgets/discover_details.dart';
 import 'package:we_date/features/home/discover/state/discover_bloc.dart';

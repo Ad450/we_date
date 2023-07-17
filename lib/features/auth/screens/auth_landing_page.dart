@@ -201,7 +201,7 @@ class _AuthLandingPageState extends State<AuthLandingPage> {
         } else if (state is AuthErrorState) {
           showToast(state.error);
         } else {
-          showToast("something bad happened");
+          //showToast("something bad happened");
         }
       },
       child: WeDateButton(
@@ -250,7 +250,9 @@ class _AuthLandingPageState extends State<AuthLandingPage> {
 
   WeDateButton _buildContinueWithFacebookButton(ThemeData theme) {
     return WeDateButton(
-      onPressed: () {},
+      onPressed: () {
+        showToast("Facebook authentication not yet in. Use Google");
+      },
       paddingTop: 10,
       paddingBottom: 10,
       buttonStyle: ButtonStyle(

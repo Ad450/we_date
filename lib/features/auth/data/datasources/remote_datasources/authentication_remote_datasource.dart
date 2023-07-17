@@ -34,7 +34,7 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
         final userCredentials = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
 
         final location = await getLocation(Injector.getIt.get<Location>());
-        final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
+        final profile = ProfileModel(uid: userCredentials.user!.uid, location: location?.toJson());
         final user = UserModel(
           uid: userCredentials.user!.uid,
           email: userCredentials.user!.email!,
@@ -69,7 +69,7 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
         );
         final userCredentials = await FirebaseAuth.instance.signInWithCredential(googleCredentials);
         final location = await getLocation(Injector.getIt.get<Location>());
-        final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
+        final profile = ProfileModel(uid: userCredentials.user!.uid, location: location?.toJson());
         final user = UserModel(
           uid: userCredentials.user!.uid,
           email: userCredentials.user!.email!,

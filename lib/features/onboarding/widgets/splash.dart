@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:liquid_swipe/liquid_swipe.dart';
+
+// import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:we_date/core/datastore/shared_preferences.dart';
 import 'package:we_date/core/di/configure_dependencies.dart';
 import 'package:we_date/core/utils/constants.dart';
@@ -10,14 +11,15 @@ class Splash extends StatefulWidget {
   final String title;
   final String subtitle;
   final String imgURL;
-  final LiquidController? liquidController;
+
+  // final LiquidController? liquidController;
 
   const Splash({
     super.key,
     required this.title,
     required this.subtitle,
     required this.imgURL,
-    required this.liquidController,
+    // required this.liquidController,
   });
 
   @override

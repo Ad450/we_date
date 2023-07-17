@@ -13,10 +13,21 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Future<void> _updateProfile(UpdateProfileEvent event, Emitter<ProfileState> emit) async {
     emit(const ProfileState.updateProfileLoading());
     final result = await updateProfile(UpdateProfileParam(
-      gender: event.gender,
-      firstName: event.firstName,
-      lastName: event.lastName,
-      profileImageURL: event.profileImageURL,
+      heightValue: event.heightValue,
+      selectedInterest: event.selectedInterest,
+      selectedHeightUnit: event.selectedHeightUnit,
+      selectedGender: event.selectedGender,
+      selectedBodyType: event.selectedBodyType,
+      selectedDrinking: event.selectedDrinking,
+      selectedLifestyleChoices: event.selectedLifestyleChoices,
+      selectedLookingFor: event.selectedLookingFor,
+      selectedReligion: event.selectedReligion,
+      selectedWorkout: event.selectedWorkout,
+      username: event.username,
+      selectedInterests: event.selectedInterests,
+      profileImagePath: event.profileImagePath,
+      publicPhotosPaths: event.publicPhotosPaths,
+      privatePhotosPaths: event.privatePhotosPaths,
     ));
     result.fold(
       (l) => emit(ProfileState.updateProfileError(l.message)),

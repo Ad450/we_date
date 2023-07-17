@@ -12,10 +12,21 @@ class UpdateProfile implements Usecase<VoidType, UpdateProfileParam> {
   Future<Either<UIError, VoidType>> call(UpdateProfileParam param) async {
     try {
       await _profileRepository.updateProfile(
-        gender: param.gender,
-        firstName: param.firstName,
-        lastName: param.lastName,
-        profileImageURL: param.profileImageURL,
+        heightValue: param.heightValue.toString(),
+        selectedInterest: param.selectedInterest,
+        selectedHeightUnit: param.selectedHeightUnit,
+        selectedGender: param.selectedGender,
+        selectedBodyType: param.selectedBodyType,
+        selectedDrinking: param.selectedDrinking,
+        selectedLifestyleChoices: param.selectedLifestyleChoices,
+        selectedLookingFor: param.selectedLookingFor,
+        selectedReligion: param.selectedReligion,
+        selectedWorkout: param.selectedWorkout,
+        username: param.username,
+        selectedInterests: param.selectedInterests,
+        profileImagePath: param.profileImagePath,
+        publicPhotosPaths: param.publicPhotosPaths,
+        privatePhotosPaths: param.privatePhotosPaths,
       );
       return const Right(VoidType());
     } on NetworkFailure catch (e) {
@@ -25,15 +36,37 @@ class UpdateProfile implements Usecase<VoidType, UpdateProfileParam> {
 }
 
 class UpdateProfileParam {
-  final String? firstName;
-  final String? lastName;
-  final String? gender;
-  final String? profileImageURL;
+  final String selectedReligion;
+  final String selectedLookingFor;
+  final String selectedLifestyleChoices;
+  final String selectedDrinking;
+  final Set<String> selectedInterests;
+  final String selectedWorkout;
+  final String selectedGender;
+  final String selectedInterest;
+  final String selectedBodyType;
+  final String selectedHeightUnit;
+  final String username;
+  final double heightValue;
+  final String? profileImagePath;
+  final Set<String> publicPhotosPaths;
+  final Set<String> privatePhotosPaths;
 
   UpdateProfileParam({
-    required this.gender,
-    this.firstName,
-    this.lastName,
-    this.profileImageURL,
+    required this.heightValue,
+    required this.selectedInterest,
+    required this.selectedHeightUnit,
+    required this.selectedGender,
+    required this.selectedBodyType,
+    required this.selectedDrinking,
+    required this.selectedLifestyleChoices,
+    required this.selectedLookingFor,
+    required this.selectedReligion,
+    required this.selectedWorkout,
+    required this.username,
+    required this.selectedInterests,
+    required this.profileImagePath,
+    required this.publicPhotosPaths,
+    required this.privatePhotosPaths,
   });
 }

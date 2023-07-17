@@ -11,18 +11,40 @@ import 'package:we_date/core/widget/we_date_button.dart';
 import 'package:we_date/features/profile/screens/profile_page_4.dart';
 
 class ProfilePage3 extends StatefulWidget {
-  const ProfilePage3({Key? key}) : super(key: key);
+  final String selectedReligion;
+  final String selectedLookingFor;
+  final String selectedLifestyleChoices;
+  final String selectedDrinking;
+  final String selectedWorkout;
+  final String selectedGender;
+  final String selectedInterest;
+  final String selectedBodyType;
+  final String selectedHeightUnit;
+  final String username;
+  final double heightValue;
+  final String? profileImagePath;
+
+  const ProfilePage3({
+    required this.heightValue,
+    required this.selectedInterest,
+    required this.selectedHeightUnit,
+    required this.selectedGender,
+    required this.selectedBodyType,
+    required this.selectedDrinking,
+    required this.selectedLifestyleChoices,
+    required this.selectedLookingFor,
+    required this.selectedReligion,
+    required this.selectedWorkout,
+    required this.username,
+    required this.profileImagePath,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ProfilePage3> createState() => _ProfilePage3State();
 }
 
 class _ProfilePage3State extends State<ProfilePage3> {
-  String selectedReligion = "";
-  String selectedLookingFor = "";
-  String selectedLifestyleChoices = "";
-  String selectedDrinking = "";
-  String selecledWorkout = "";
   Set<String> selectedInterests = {};
 
   @override
@@ -130,7 +152,26 @@ class _ProfilePage3State extends State<ProfilePage3> {
             verticalSpace(150),
             WeDateButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage4()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ProfilePage4(
+                      selectedReligion: widget.selectedReligion,
+                      selectedLookingFor: widget.selectedLookingFor,
+                      selectedLifestyleChoices: widget.selectedLifestyleChoices,
+                      selectedDrinking: widget.selectedDrinking,
+                      selectedInterests: selectedInterests,
+                      selectedWorkout: widget.selectedWorkout,
+                      selectedGender: widget.selectedGender,
+                      selectedInterest: widget.selectedInterest,
+                      selectedBodyType: widget.selectedBodyType,
+                      selectedHeightUnit: widget.selectedHeightUnit,
+                      username: widget.username,
+                      heightValue: widget.heightValue,
+                      profileImagePath: widget.profileImagePath,
+                    ),
+                  ),
+                );
               },
               paddingTop: 15,
               paddingBottom: 15,

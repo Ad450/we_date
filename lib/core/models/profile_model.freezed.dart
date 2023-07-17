@@ -21,18 +21,22 @@ ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProfileModel {
   String get uid => throw _privateConstructorUsedError;
-  String get gender => throw _privateConstructorUsedError;
   Map<String, dynamic>? get location => throw _privateConstructorUsedError;
-  String? get firstName => throw _privateConstructorUsedError;
-  String? get lastName => throw _privateConstructorUsedError;
-  String? get profileImage => throw _privateConstructorUsedError;
-  String? get numberOfProfileImages => throw _privateConstructorUsedError;
-  String? get country => throw _privateConstructorUsedError;
-  String? get religion => throw _privateConstructorUsedError;
-  String? get height => throw _privateConstructorUsedError;
-  String? get age => throw _privateConstructorUsedError;
-  String? get occupation => throw _privateConstructorUsedError;
-  String? get education => throw _privateConstructorUsedError;
+  String? get heightValue => throw _privateConstructorUsedError;
+  String? get selectedInterest => throw _privateConstructorUsedError;
+  String? get selectedHeightUnit => throw _privateConstructorUsedError;
+  String? get selectedGender => throw _privateConstructorUsedError;
+  String? get selectedBodyType => throw _privateConstructorUsedError;
+  String? get selectedDrinking => throw _privateConstructorUsedError;
+  String? get selectedLifestyleChoices => throw _privateConstructorUsedError;
+  String? get selectedLookingFor => throw _privateConstructorUsedError;
+  String? get selectedReligion => throw _privateConstructorUsedError;
+  String? get selectedWorkout => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get profileImagePath => throw _privateConstructorUsedError;
+  Set<String>? get publicPhotosPaths => throw _privateConstructorUsedError;
+  Set<String>? get privatePhotosPaths => throw _privateConstructorUsedError;
+  Set<String>? get selectedInterests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,18 +52,22 @@ abstract class $ProfileModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String uid,
-      String gender,
       Map<String, dynamic>? location,
-      String? firstName,
-      String? lastName,
-      String? profileImage,
-      String? numberOfProfileImages,
-      String? country,
-      String? religion,
-      String? height,
-      String? age,
-      String? occupation,
-      String? education});
+      String? heightValue,
+      String? selectedInterest,
+      String? selectedHeightUnit,
+      String? selectedGender,
+      String? selectedBodyType,
+      String? selectedDrinking,
+      String? selectedLifestyleChoices,
+      String? selectedLookingFor,
+      String? selectedReligion,
+      String? selectedWorkout,
+      String? username,
+      String? profileImagePath,
+      Set<String>? publicPhotosPaths,
+      Set<String>? privatePhotosPaths,
+      Set<String>? selectedInterests});
 }
 
 /// @nodoc
@@ -76,72 +84,92 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   @override
   $Res call({
     Object? uid = null,
-    Object? gender = null,
     Object? location = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? profileImage = freezed,
-    Object? numberOfProfileImages = freezed,
-    Object? country = freezed,
-    Object? religion = freezed,
-    Object? height = freezed,
-    Object? age = freezed,
-    Object? occupation = freezed,
-    Object? education = freezed,
+    Object? heightValue = freezed,
+    Object? selectedInterest = freezed,
+    Object? selectedHeightUnit = freezed,
+    Object? selectedGender = freezed,
+    Object? selectedBodyType = freezed,
+    Object? selectedDrinking = freezed,
+    Object? selectedLifestyleChoices = freezed,
+    Object? selectedLookingFor = freezed,
+    Object? selectedReligion = freezed,
+    Object? selectedWorkout = freezed,
+    Object? username = freezed,
+    Object? profileImagePath = freezed,
+    Object? publicPhotosPaths = freezed,
+    Object? privatePhotosPaths = freezed,
+    Object? selectedInterests = freezed,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      heightValue: freezed == heightValue
+          ? _value.heightValue
+          : heightValue // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      selectedInterest: freezed == selectedInterest
+          ? _value.selectedInterest
+          : selectedInterest // ignore: cast_nullable_to_non_nullable
               as String?,
-      profileImage: freezed == profileImage
-          ? _value.profileImage
-          : profileImage // ignore: cast_nullable_to_non_nullable
+      selectedHeightUnit: freezed == selectedHeightUnit
+          ? _value.selectedHeightUnit
+          : selectedHeightUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      numberOfProfileImages: freezed == numberOfProfileImages
-          ? _value.numberOfProfileImages
-          : numberOfProfileImages // ignore: cast_nullable_to_non_nullable
+      selectedGender: freezed == selectedGender
+          ? _value.selectedGender
+          : selectedGender // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: freezed == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
+      selectedBodyType: freezed == selectedBodyType
+          ? _value.selectedBodyType
+          : selectedBodyType // ignore: cast_nullable_to_non_nullable
               as String?,
-      religion: freezed == religion
-          ? _value.religion
-          : religion // ignore: cast_nullable_to_non_nullable
+      selectedDrinking: freezed == selectedDrinking
+          ? _value.selectedDrinking
+          : selectedDrinking // ignore: cast_nullable_to_non_nullable
               as String?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      selectedLifestyleChoices: freezed == selectedLifestyleChoices
+          ? _value.selectedLifestyleChoices
+          : selectedLifestyleChoices // ignore: cast_nullable_to_non_nullable
               as String?,
-      age: freezed == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
+      selectedLookingFor: freezed == selectedLookingFor
+          ? _value.selectedLookingFor
+          : selectedLookingFor // ignore: cast_nullable_to_non_nullable
               as String?,
-      occupation: freezed == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
+      selectedReligion: freezed == selectedReligion
+          ? _value.selectedReligion
+          : selectedReligion // ignore: cast_nullable_to_non_nullable
               as String?,
-      education: freezed == education
-          ? _value.education
-          : education // ignore: cast_nullable_to_non_nullable
+      selectedWorkout: freezed == selectedWorkout
+          ? _value.selectedWorkout
+          : selectedWorkout // ignore: cast_nullable_to_non_nullable
               as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profileImagePath: freezed == profileImagePath
+          ? _value.profileImagePath
+          : profileImagePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      publicPhotosPaths: freezed == publicPhotosPaths
+          ? _value.publicPhotosPaths
+          : publicPhotosPaths // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
+      privatePhotosPaths: freezed == privatePhotosPaths
+          ? _value.privatePhotosPaths
+          : privatePhotosPaths // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
+      selectedInterests: freezed == selectedInterests
+          ? _value.selectedInterests
+          : selectedInterests // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
     ) as $Val);
   }
 }
@@ -156,18 +184,22 @@ abstract class _$$_ProfileModelCopyWith<$Res>
   @useResult
   $Res call(
       {String uid,
-      String gender,
       Map<String, dynamic>? location,
-      String? firstName,
-      String? lastName,
-      String? profileImage,
-      String? numberOfProfileImages,
-      String? country,
-      String? religion,
-      String? height,
-      String? age,
-      String? occupation,
-      String? education});
+      String? heightValue,
+      String? selectedInterest,
+      String? selectedHeightUnit,
+      String? selectedGender,
+      String? selectedBodyType,
+      String? selectedDrinking,
+      String? selectedLifestyleChoices,
+      String? selectedLookingFor,
+      String? selectedReligion,
+      String? selectedWorkout,
+      String? username,
+      String? profileImagePath,
+      Set<String>? publicPhotosPaths,
+      Set<String>? privatePhotosPaths,
+      Set<String>? selectedInterests});
 }
 
 /// @nodoc
@@ -182,72 +214,92 @@ class __$$_ProfileModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uid = null,
-    Object? gender = null,
     Object? location = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? profileImage = freezed,
-    Object? numberOfProfileImages = freezed,
-    Object? country = freezed,
-    Object? religion = freezed,
-    Object? height = freezed,
-    Object? age = freezed,
-    Object? occupation = freezed,
-    Object? education = freezed,
+    Object? heightValue = freezed,
+    Object? selectedInterest = freezed,
+    Object? selectedHeightUnit = freezed,
+    Object? selectedGender = freezed,
+    Object? selectedBodyType = freezed,
+    Object? selectedDrinking = freezed,
+    Object? selectedLifestyleChoices = freezed,
+    Object? selectedLookingFor = freezed,
+    Object? selectedReligion = freezed,
+    Object? selectedWorkout = freezed,
+    Object? username = freezed,
+    Object? profileImagePath = freezed,
+    Object? publicPhotosPaths = freezed,
+    Object? privatePhotosPaths = freezed,
+    Object? selectedInterests = freezed,
   }) {
     return _then(_$_ProfileModel(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String,
       location: freezed == location
           ? _value._location
           : location // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      firstName: freezed == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      heightValue: freezed == heightValue
+          ? _value.heightValue
+          : heightValue // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: freezed == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      selectedInterest: freezed == selectedInterest
+          ? _value.selectedInterest
+          : selectedInterest // ignore: cast_nullable_to_non_nullable
               as String?,
-      profileImage: freezed == profileImage
-          ? _value.profileImage
-          : profileImage // ignore: cast_nullable_to_non_nullable
+      selectedHeightUnit: freezed == selectedHeightUnit
+          ? _value.selectedHeightUnit
+          : selectedHeightUnit // ignore: cast_nullable_to_non_nullable
               as String?,
-      numberOfProfileImages: freezed == numberOfProfileImages
-          ? _value.numberOfProfileImages
-          : numberOfProfileImages // ignore: cast_nullable_to_non_nullable
+      selectedGender: freezed == selectedGender
+          ? _value.selectedGender
+          : selectedGender // ignore: cast_nullable_to_non_nullable
               as String?,
-      country: freezed == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
+      selectedBodyType: freezed == selectedBodyType
+          ? _value.selectedBodyType
+          : selectedBodyType // ignore: cast_nullable_to_non_nullable
               as String?,
-      religion: freezed == religion
-          ? _value.religion
-          : religion // ignore: cast_nullable_to_non_nullable
+      selectedDrinking: freezed == selectedDrinking
+          ? _value.selectedDrinking
+          : selectedDrinking // ignore: cast_nullable_to_non_nullable
               as String?,
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      selectedLifestyleChoices: freezed == selectedLifestyleChoices
+          ? _value.selectedLifestyleChoices
+          : selectedLifestyleChoices // ignore: cast_nullable_to_non_nullable
               as String?,
-      age: freezed == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
+      selectedLookingFor: freezed == selectedLookingFor
+          ? _value.selectedLookingFor
+          : selectedLookingFor // ignore: cast_nullable_to_non_nullable
               as String?,
-      occupation: freezed == occupation
-          ? _value.occupation
-          : occupation // ignore: cast_nullable_to_non_nullable
+      selectedReligion: freezed == selectedReligion
+          ? _value.selectedReligion
+          : selectedReligion // ignore: cast_nullable_to_non_nullable
               as String?,
-      education: freezed == education
-          ? _value.education
-          : education // ignore: cast_nullable_to_non_nullable
+      selectedWorkout: freezed == selectedWorkout
+          ? _value.selectedWorkout
+          : selectedWorkout // ignore: cast_nullable_to_non_nullable
               as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profileImagePath: freezed == profileImagePath
+          ? _value.profileImagePath
+          : profileImagePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      publicPhotosPaths: freezed == publicPhotosPaths
+          ? _value._publicPhotosPaths
+          : publicPhotosPaths // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
+      privatePhotosPaths: freezed == privatePhotosPaths
+          ? _value._privatePhotosPaths
+          : privatePhotosPaths // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
+      selectedInterests: freezed == selectedInterests
+          ? _value._selectedInterests
+          : selectedInterests // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
     ));
   }
 }
@@ -257,27 +309,32 @@ class __$$_ProfileModelCopyWithImpl<$Res>
 class _$_ProfileModel implements _ProfileModel {
   _$_ProfileModel(
       {required this.uid,
-      required this.gender,
       required final Map<String, dynamic>? location,
-      this.firstName,
-      this.lastName,
-      this.profileImage,
-      this.numberOfProfileImages,
-      this.country,
-      this.religion,
-      this.height,
-      this.age,
-      this.occupation,
-      this.education})
-      : _location = location;
+      this.heightValue,
+      this.selectedInterest,
+      this.selectedHeightUnit,
+      this.selectedGender,
+      this.selectedBodyType,
+      this.selectedDrinking,
+      this.selectedLifestyleChoices,
+      this.selectedLookingFor,
+      this.selectedReligion,
+      this.selectedWorkout,
+      this.username,
+      this.profileImagePath,
+      final Set<String>? publicPhotosPaths,
+      final Set<String>? privatePhotosPaths,
+      final Set<String>? selectedInterests})
+      : _location = location,
+        _publicPhotosPaths = publicPhotosPaths,
+        _privatePhotosPaths = privatePhotosPaths,
+        _selectedInterests = selectedInterests;
 
   factory _$_ProfileModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileModelFromJson(json);
 
   @override
   final String uid;
-  @override
-  final String gender;
   final Map<String, dynamic>? _location;
   @override
   Map<String, dynamic>? get location {
@@ -289,29 +346,65 @@ class _$_ProfileModel implements _ProfileModel {
   }
 
   @override
-  final String? firstName;
+  final String? heightValue;
   @override
-  final String? lastName;
+  final String? selectedInterest;
   @override
-  final String? profileImage;
+  final String? selectedHeightUnit;
   @override
-  final String? numberOfProfileImages;
+  final String? selectedGender;
   @override
-  final String? country;
+  final String? selectedBodyType;
   @override
-  final String? religion;
+  final String? selectedDrinking;
   @override
-  final String? height;
+  final String? selectedLifestyleChoices;
   @override
-  final String? age;
+  final String? selectedLookingFor;
   @override
-  final String? occupation;
+  final String? selectedReligion;
   @override
-  final String? education;
+  final String? selectedWorkout;
+  @override
+  final String? username;
+  @override
+  final String? profileImagePath;
+  final Set<String>? _publicPhotosPaths;
+  @override
+  Set<String>? get publicPhotosPaths {
+    final value = _publicPhotosPaths;
+    if (value == null) return null;
+    if (_publicPhotosPaths is EqualUnmodifiableSetView)
+      return _publicPhotosPaths;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(value);
+  }
+
+  final Set<String>? _privatePhotosPaths;
+  @override
+  Set<String>? get privatePhotosPaths {
+    final value = _privatePhotosPaths;
+    if (value == null) return null;
+    if (_privatePhotosPaths is EqualUnmodifiableSetView)
+      return _privatePhotosPaths;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(value);
+  }
+
+  final Set<String>? _selectedInterests;
+  @override
+  Set<String>? get selectedInterests {
+    final value = _selectedInterests;
+    if (value == null) return null;
+    if (_selectedInterests is EqualUnmodifiableSetView)
+      return _selectedInterests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(value);
+  }
 
   @override
   String toString() {
-    return 'ProfileModel(uid: $uid, gender: $gender, location: $location, firstName: $firstName, lastName: $lastName, profileImage: $profileImage, numberOfProfileImages: $numberOfProfileImages, country: $country, religion: $religion, height: $height, age: $age, occupation: $occupation, education: $education)';
+    return 'ProfileModel(uid: $uid, location: $location, heightValue: $heightValue, selectedInterest: $selectedInterest, selectedHeightUnit: $selectedHeightUnit, selectedGender: $selectedGender, selectedBodyType: $selectedBodyType, selectedDrinking: $selectedDrinking, selectedLifestyleChoices: $selectedLifestyleChoices, selectedLookingFor: $selectedLookingFor, selectedReligion: $selectedReligion, selectedWorkout: $selectedWorkout, username: $username, profileImagePath: $profileImagePath, publicPhotosPaths: $publicPhotosPaths, privatePhotosPaths: $privatePhotosPaths, selectedInterests: $selectedInterests)';
   }
 
   @override
@@ -320,25 +413,38 @@ class _$_ProfileModel implements _ProfileModel {
         (other.runtimeType == runtimeType &&
             other is _$_ProfileModel &&
             (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
             const DeepCollectionEquality().equals(other._location, _location) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.profileImage, profileImage) ||
-                other.profileImage == profileImage) &&
-            (identical(other.numberOfProfileImages, numberOfProfileImages) ||
-                other.numberOfProfileImages == numberOfProfileImages) &&
-            (identical(other.country, country) || other.country == country) &&
-            (identical(other.religion, religion) ||
-                other.religion == religion) &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.age, age) || other.age == age) &&
-            (identical(other.occupation, occupation) ||
-                other.occupation == occupation) &&
-            (identical(other.education, education) ||
-                other.education == education));
+            (identical(other.heightValue, heightValue) ||
+                other.heightValue == heightValue) &&
+            (identical(other.selectedInterest, selectedInterest) ||
+                other.selectedInterest == selectedInterest) &&
+            (identical(other.selectedHeightUnit, selectedHeightUnit) ||
+                other.selectedHeightUnit == selectedHeightUnit) &&
+            (identical(other.selectedGender, selectedGender) ||
+                other.selectedGender == selectedGender) &&
+            (identical(other.selectedBodyType, selectedBodyType) ||
+                other.selectedBodyType == selectedBodyType) &&
+            (identical(other.selectedDrinking, selectedDrinking) ||
+                other.selectedDrinking == selectedDrinking) &&
+            (identical(
+                    other.selectedLifestyleChoices, selectedLifestyleChoices) ||
+                other.selectedLifestyleChoices == selectedLifestyleChoices) &&
+            (identical(other.selectedLookingFor, selectedLookingFor) ||
+                other.selectedLookingFor == selectedLookingFor) &&
+            (identical(other.selectedReligion, selectedReligion) ||
+                other.selectedReligion == selectedReligion) &&
+            (identical(other.selectedWorkout, selectedWorkout) ||
+                other.selectedWorkout == selectedWorkout) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.profileImagePath, profileImagePath) ||
+                other.profileImagePath == profileImagePath) &&
+            const DeepCollectionEquality()
+                .equals(other._publicPhotosPaths, _publicPhotosPaths) &&
+            const DeepCollectionEquality()
+                .equals(other._privatePhotosPaths, _privatePhotosPaths) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedInterests, _selectedInterests));
   }
 
   @JsonKey(ignore: true)
@@ -346,18 +452,22 @@ class _$_ProfileModel implements _ProfileModel {
   int get hashCode => Object.hash(
       runtimeType,
       uid,
-      gender,
       const DeepCollectionEquality().hash(_location),
-      firstName,
-      lastName,
-      profileImage,
-      numberOfProfileImages,
-      country,
-      religion,
-      height,
-      age,
-      occupation,
-      education);
+      heightValue,
+      selectedInterest,
+      selectedHeightUnit,
+      selectedGender,
+      selectedBodyType,
+      selectedDrinking,
+      selectedLifestyleChoices,
+      selectedLookingFor,
+      selectedReligion,
+      selectedWorkout,
+      username,
+      profileImagePath,
+      const DeepCollectionEquality().hash(_publicPhotosPaths),
+      const DeepCollectionEquality().hash(_privatePhotosPaths),
+      const DeepCollectionEquality().hash(_selectedInterests));
 
   @JsonKey(ignore: true)
   @override
@@ -376,18 +486,22 @@ class _$_ProfileModel implements _ProfileModel {
 abstract class _ProfileModel implements ProfileModel {
   factory _ProfileModel(
       {required final String uid,
-      required final String gender,
       required final Map<String, dynamic>? location,
-      final String? firstName,
-      final String? lastName,
-      final String? profileImage,
-      final String? numberOfProfileImages,
-      final String? country,
-      final String? religion,
-      final String? height,
-      final String? age,
-      final String? occupation,
-      final String? education}) = _$_ProfileModel;
+      final String? heightValue,
+      final String? selectedInterest,
+      final String? selectedHeightUnit,
+      final String? selectedGender,
+      final String? selectedBodyType,
+      final String? selectedDrinking,
+      final String? selectedLifestyleChoices,
+      final String? selectedLookingFor,
+      final String? selectedReligion,
+      final String? selectedWorkout,
+      final String? username,
+      final String? profileImagePath,
+      final Set<String>? publicPhotosPaths,
+      final Set<String>? privatePhotosPaths,
+      final Set<String>? selectedInterests}) = _$_ProfileModel;
 
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =
       _$_ProfileModel.fromJson;
@@ -395,29 +509,37 @@ abstract class _ProfileModel implements ProfileModel {
   @override
   String get uid;
   @override
-  String get gender;
-  @override
   Map<String, dynamic>? get location;
   @override
-  String? get firstName;
+  String? get heightValue;
   @override
-  String? get lastName;
+  String? get selectedInterest;
   @override
-  String? get profileImage;
+  String? get selectedHeightUnit;
   @override
-  String? get numberOfProfileImages;
+  String? get selectedGender;
   @override
-  String? get country;
+  String? get selectedBodyType;
   @override
-  String? get religion;
+  String? get selectedDrinking;
   @override
-  String? get height;
+  String? get selectedLifestyleChoices;
   @override
-  String? get age;
+  String? get selectedLookingFor;
   @override
-  String? get occupation;
+  String? get selectedReligion;
   @override
-  String? get education;
+  String? get selectedWorkout;
+  @override
+  String? get username;
+  @override
+  String? get profileImagePath;
+  @override
+  Set<String>? get publicPhotosPaths;
+  @override
+  Set<String>? get privatePhotosPaths;
+  @override
+  Set<String>? get selectedInterests;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileModelCopyWith<_$_ProfileModel> get copyWith =>

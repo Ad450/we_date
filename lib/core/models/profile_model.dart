@@ -9,18 +9,22 @@ part 'profile_model.g.dart';
 abstract class ProfileModel with _$ProfileModel {
   factory ProfileModel({
     required String uid,
-    required String gender,
     required Map<String, dynamic>? location,
-    String? firstName,
-    String? lastName,
-    String? profileImage,
-    String? numberOfProfileImages,
-    String? country,
-    String? religion,
-    String? height,
-    String? age,
-    String? occupation,
-    String? education,
+    String? heightValue,
+    String? selectedInterest,
+    String? selectedHeightUnit,
+    String? selectedGender,
+    String? selectedBodyType,
+    String? selectedDrinking,
+    String? selectedLifestyleChoices,
+    String? selectedLookingFor,
+    String? selectedReligion,
+    String? selectedWorkout,
+    String? username,
+    String? profileImagePath,
+    Set<String>? publicPhotosPaths,
+    Set<String>? privatePhotosPaths,
+    Set<String>? selectedInterests,
   }) = _ProfileModel;
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => _$ProfileModelFromJson(
