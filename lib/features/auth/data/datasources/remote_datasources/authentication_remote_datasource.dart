@@ -28,25 +28,26 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
   @override
   Future<UserModel> signupOrLoginWithFacebook() async {
     try {
-      final LoginResult loginResult = await FacebookAuth.instance.login();
-      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-      final userCredentials = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+      if (FirebaseAuth.instance.currentUser?.uid == null) {
+        final LoginResult loginResult = await FacebookAuth.instance.login();
+        final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+        final userCredentials = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
 
-      final location = await getLocation(Injector.getIt.get<Location>());
-      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
-      final user = UserModel(
-        uid: userCredentials.user!.uid,
-        email: userCredentials.user!.email!,
-      );
-      final uid = userCredentials.user!.uid;
-      final userfromDB = await _db.getByIdentifier(Collections.user, "uid", uid);
-
-      if (userfromDB == null) {
+        final location = await getLocation(Injector.getIt.get<Location>());
+        final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
+        final user = UserModel(
+          uid: userCredentials.user!.uid,
+          email: userCredentials.user!.email!,
+        );
         await _db.save(Collections.user, user.toJson());
         await _db.save(Collections.profile, profile.toJson());
-      }
 
-      return user;
+        return user;
+      } else {
+        final uid = FirebaseAuth.instance.currentUser?.uid;
+        final user = await _db.getByIdentifier(Collections.user, "uid", uid!);
+        return UserModel.fromJson(user!.data());
+      }
     } on DbFailure catch (e) {
       throw ApiFailure(e.message);
     } catch (e) {
@@ -57,31 +58,32 @@ class AuthenticationRemoteDatasourceImpl implements AuthenticationRemoteDatasour
   @override
   Future<UserModel> signupOrLoginWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (FirebaseAuth.instance.currentUser?.uid == null) {
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+        final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-      final googleCredentials = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-      final userCredentials = await FirebaseAuth.instance.signInWithCredential(googleCredentials);
-      final location = await getLocation(Injector.getIt.get<Location>());
-      final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
-      final user = UserModel(
-        uid: userCredentials.user!.uid,
-        email: userCredentials.user!.email!,
-      );
-      final uid = userCredentials.user!.uid;
-      final userfromDB = await _db.getByIdentifier(Collections.user, "uid", uid);
+        final googleCredentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+        final userCredentials = await FirebaseAuth.instance.signInWithCredential(googleCredentials);
+        final location = await getLocation(Injector.getIt.get<Location>());
+        final profile = ProfileModel(gender: "", uid: userCredentials.user!.uid, location: location?.toJson());
+        final user = UserModel(
+          uid: userCredentials.user!.uid,
+          email: userCredentials.user!.email!,
+        );
 
-      if (userfromDB == null) {
-        print(profile.toJson());
         await _db.save(Collections.profile, profile.toJson());
         await _db.save(Collections.user, user.toJson());
-      }
 
-      return user;
+        return user;
+      } else {
+        final uid = FirebaseAuth.instance.currentUser?.uid;
+        final user = await _db.getByIdentifier(Collections.user, "uid", uid!);
+        return UserModel.fromJson(user!.data());
+      }
     } on DbFailure catch (e) {
       throw ApiFailure(e.message);
     } catch (e) {

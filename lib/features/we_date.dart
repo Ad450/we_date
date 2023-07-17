@@ -52,35 +52,19 @@ class _StartWeDateState extends State<StartWeDate> {
   @override
   void initState() {
     super.initState();
-    // context.read<AuthenticationBloc>().add(SignoutEvent());
+    context.read<AuthenticationBloc>().add(SignoutEvent());
   }
 
   // @override
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthState>(
-        buildWhen: (_, state) => state.maybeMap(
-              orElse: () => false,
-              unAuthenticated: (_) => true,
-            ),
+        buildWhen: (previous, newState) => previous != newState,
         builder: (_, state) {
-          // print(state);
-          // if (widget.showAuthPage != null) {
-          //   return const AuthLandingPage();
-          // }
-          // if (widget.showAuthPage == null) {
-          //   return const Onboarding();
-          // }
-          // return const HomeScreen();
-          return state.maybeMap(
-              orElse: () => const AuthLandingPage(),
-              unAuthenticated: (state) {
-                // if (widget.showAuthPage != null) {
-                //   return const AuthLandingPage();
-                // }
-                return const AuthLandingPage();
-              },
-              authenticated: (_) => const HomeScreen());
+          if (state is AuthenticatedState) {
+            return const HomeScreen();
+          }
+          return const AuthLandingPage();
         });
     // isAuthenticated != null && isAuthenticated!
     //   ? const HomeScreen()

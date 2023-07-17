@@ -19,7 +19,7 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
     required this.signupOrLoginWithGoogle,
     required this.checkAuthStatus,
     required this.signout,
-  }) : super(const AuthState.initial()) {
+  }) : super(AuthStateInitial()) {
     on<SignupWithGoogleEvent>(authWithGoogle);
     on<SignupWithFacebookEvent>(authWithFacebook);
     on<AppStarted>(checkAuthenticationStatus);
@@ -27,20 +27,20 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> authWithGoogle(AuthEvent event, Emitter<AuthState> emit) async {
-    emit(const AuthState.loading());
+    emit(AuthStateLoading());
     final result = await signupOrLoginWithGoogle(const NoParam());
     result.fold(
-      (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
-      (r) => emit(const AuthState.authenticated()),
+      (l) => emit(AuthErrorState(l.message)),
+      (r) => emit(AuthSuccessState(r)),
     );
   }
 
   Future<void> authWithFacebook(AuthEvent event, Emitter<AuthState> emit) async {
-    emit(const AuthState.loading());
+    emit(AuthStateLoading());
     final result = await signupOrLoginWithFacebook(const NoParam());
     result.fold(
-      (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
-      (r) => emit(const AuthState.authenticated()),
+      (l) => emit(AuthErrorState(l.message)),
+      (r) => emit(AuthSuccessState(r)),
     );
   }
 
@@ -49,16 +49,16 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> checkAuthenticationStatus(AppStarted event, Emitter<AuthState> emit) async {
     final result = await checkAuthStatus(const NoParam());
     result.fold(
-      (l) => emit(const AuthState.unAuthenticated()),
-      (r) => emit(const AuthState.authenticated()),
+      (l) => emit(UnauthenticatedState()),
+      (r) => emit(AuthenticatedState()),
     );
   }
 
   Future<void> signoutUser(SignoutEvent event, Emitter<AuthState> emit) async {
     final result = await signout(const NoParam());
     result.fold(
-      (l) => emit(AuthState.error(payload: AuthStatePayload(error: l.message, user: null))),
-      (r) => emit(const AuthState.unAuthenticated()),
+      (l) => emit(AuthErrorState(l.message)),
+      (r) => emit(UnauthenticatedState()),
     );
   }
 }

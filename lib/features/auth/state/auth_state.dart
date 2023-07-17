@@ -1,32 +1,57 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:we_date/core/models/user_model.dart';
+//
+// part 'auth_state.freezed.dart';
+//
+// part 'auth_state.g.dart';
+//
+// @freezed
+// class AuthState with _$AuthState {
+//   const factory AuthState.initial() = _AuthStateInitial;
+//
+//   const factory AuthState.authenticated() = _AuthStateAuthenticated;
+//
+//   const factory AuthState.unAuthenticated() = _AuthStateUnAuthenticated;
+//
+//   const factory AuthState.loading() = _AuthStateLoading;
+//
+//   const factory AuthState.success({required AuthStatePayload payload}) = _AuthStateSuccess;
+//   const factory AuthState.error({required AuthStatePayload payload}) = _AuthStateError;
+// }
+//
+// @freezed
+// class AuthStatePayload with _$AuthStatePayload {
+//   const factory AuthStatePayload({
+//     required String? error,
+//     required UserModel? user,
+//   }) = _AuthStatePayload;
+//
+//   factory AuthStatePayload.fromJson(Map json) =>
+//       _$AuthStatePayloadFromJson(Map.castFrom<dynamic, dynamic, String, dynamic>(json));
+// }
+
 import 'package:we_date/core/models/user_model.dart';
 
-part 'auth_state.freezed.dart';
+abstract class AuthState {}
 
-part 'auth_state.g.dart';
+class AuthStateInitial extends AuthState {}
 
-@freezed
-class AuthState with _$AuthState {
-  const factory AuthState.initial() = _AuthStateInitial;
+class AuthenticatedState extends AuthState {}
 
-  const factory AuthState.authenticated() = _AuthStateAuthenticated;
+class UnauthenticatedState extends AuthState {}
 
-  const factory AuthState.unAuthenticated() = _AuthStateUnAuthenticated;
+class AuthStateLoading extends AuthState {}
 
-  const factory AuthState.loading() = _AuthStateLoading;
+class AuthStateError extends AuthState {}
 
-  const factory AuthState.success({required AuthStatePayload payload}) = _AuthStateSuccess;
+class AuthSuccessState extends AuthState {
+  final UserModel user;
 
-  const factory AuthState.error({required AuthStatePayload payload}) = _AuthStateError;
+  AuthSuccessState(this.user);
 }
 
-@freezed
-class AuthStatePayload with _$AuthStatePayload {
-  const factory AuthStatePayload({
-    required String? error,
-    required UserModel? user,
-  }) = _AuthStatePayload;
+class AuthErrorState extends AuthState {
+  final String error;
 
-  factory AuthStatePayload.fromJson(Map json) =>
-      _$AuthStatePayloadFromJson(Map.castFrom<dynamic, dynamic, String, dynamic>(json));
+  AuthErrorState(this.error);
 }

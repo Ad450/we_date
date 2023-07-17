@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:location/location.dart';
 import 'package:we_date/core/datastore/database_client.dart';
 import 'package:we_date/core/models/location_model.dart';
@@ -118,4 +119,15 @@ double calculateDistance({
   final a = 0.5 - c((newLat - oldLat) * p) / 2 + c(oldLat * p) * c(newLat * p) * (1 - c((newLong - oldLong) * p)) / 2;
 
   return 12742 * math.asin(math.sqrt(a)); // 2 * R; R = 6371 km
+}
+
+void showToast(String message) async {
+  await Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0);
 }
