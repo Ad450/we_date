@@ -15,6 +15,7 @@ class ProfilePage2 extends StatefulWidget {
   final String username;
   final double heightValue;
   final String? profileImagePath;
+  final String date;
 
   const ProfilePage2(
       {required this.selectedHeightUnit,
@@ -24,6 +25,7 @@ class ProfilePage2 extends StatefulWidget {
       required this.username,
       required this.heightValue,
       required this.profileImagePath,
+      required this.date,
       Key? key})
       : super(key: key);
 
@@ -37,6 +39,35 @@ class _ProfilePage2State extends State<ProfilePage2> {
   String selectedLifestyleChoices = "";
   String selectedDrinking = "";
   String selectedWorkout = "";
+
+  void _handleContinue() {
+    if (selectedReligion.isNotEmpty &&
+        selectedLookingFor.isNotEmpty &&
+        selectedLifestyleChoices.isNotEmpty &&
+        selectedDrinking.isNotEmpty &&
+        selectedWorkout.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ProfilePage3(
+            selectedReligion: selectedReligion,
+            selectedLookingFor: selectedLookingFor,
+            selectedLifestyleChoices: selectedLifestyleChoices,
+            selectedDrinking: selectedDrinking,
+            selectedWorkout: selectedWorkout,
+            selectedGender: widget.selectedGender,
+            selectedInterest: widget.selectedInterest,
+            selectedBodyType: widget.selectedBodyType,
+            selectedHeightUnit: widget.selectedHeightUnit,
+            username: widget.username,
+            heightValue: widget.heightValue,
+            profileImagePath: widget.profileImagePath,
+            date: widget.date,
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,27 +102,7 @@ class _ProfilePage2State extends State<ProfilePage2> {
                 _buildProfileForm(theme),
                 verticalSpace(100),
                 WeDateButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ProfilePage3(
-                          selectedReligion: selectedReligion,
-                          selectedLookingFor: selectedLookingFor,
-                          selectedLifestyleChoices: selectedLifestyleChoices,
-                          selectedDrinking: selectedDrinking,
-                          selectedWorkout: selectedWorkout,
-                          selectedGender: widget.selectedGender,
-                          selectedInterest: widget.selectedInterest,
-                          selectedBodyType: widget.selectedBodyType,
-                          selectedHeightUnit: widget.selectedHeightUnit,
-                          username: widget.username,
-                          heightValue: widget.heightValue,
-                          profileImagePath: widget.profileImagePath,
-                        ),
-                      ),
-                    );
-                  },
+                  onPressed: _handleContinue,
                   paddingTop: 15,
                   paddingBottom: 15,
                   buttonStyle: ButtonStyle(

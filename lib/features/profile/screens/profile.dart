@@ -1,3 +1,4 @@
+import "package:calender_picker/date_picker_widget.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:image_picker/image_picker.dart";
@@ -29,10 +30,7 @@ class ProfilePage1 extends StatefulWidget {
 
 class _ProfilePage1State extends State<ProfilePage1> {
   final _userNameController = TextEditingController();
-
-  // final _lastNameController = TextEditingController();
-  // final _lastNameFocus = FocusNode();
-  // final _firstNameFocus = FocusNode();
+  final _dateController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String selectedGender = "";
   String selectedInterest = "";
@@ -68,44 +66,68 @@ class _ProfilePage1State extends State<ProfilePage1> {
     }
   }
 
+  void _handleContinue() {
+    if (selectedGender.isNotEmpty &&
+        selectedInterest.isNotEmpty &&
+        selectedBodyType.isNotEmpty &&
+        heightValue.toString().isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ProfilePage2(
+            selectedBodyType: selectedBodyType,
+            selectedGender: selectedGender,
+            selectedHeightUnit: selectedHeightUnit,
+            selectedInterest: selectedInterest,
+            username: _userNameController.value.text,
+            heightValue: heightValue,
+            profileImagePath: xfile?.path,
+            date: _dateController.value.text,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              _buildProfileHeader(context, theme),
-              verticalSpace(10),
-              LinearPercentIndicator(
-                padding: EdgeInsets.zero,
-                width: getVisibleScreenWidth(context) - 30,
-                lineHeight: 3.0,
-                percent: 0.25,
-                progressColor: theme.colorScheme.secondary,
-              ),
-              verticalSpace(15),
-              PictureAvatar(
-                handlePickImage: _handlePickImage,
-                isFileSelected: _isFileSelected,
-                xfile: xfile,
-              ),
-              verticalSpace(5),
-              Text(
-                "Profile Picture",
-                style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.surface, fontSize: 15),
-              ),
-              verticalSpace(20),
-              _buildProfileForm(theme, context)
-            ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _buildProfileHeader(context, theme),
+                verticalSpace(10),
+                LinearPercentIndicator(
+                  padding: EdgeInsets.zero,
+                  width: getVisibleScreenWidth(context) - 30,
+                  lineHeight: 3.0,
+                  percent: 0.25,
+                  progressColor: theme.colorScheme.secondary,
+                ),
+                verticalSpace(15),
+                PictureAvatar(
+                  handlePickImage: _handlePickImage,
+                  isFileSelected: _isFileSelected,
+                  xfile: xfile,
+                ),
+                verticalSpace(5),
+                Text(
+                  "Profile Picture",
+                  style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.surface, fontSize: 15),
+                ),
+                verticalSpace(20),
+                _buildProfileForm(theme, context)
+              ],
+            ),
           ),
         ),
       ),
-    ));
+    );
   }
 
   Form _buildProfileForm(ThemeData theme, BuildContext context) {
@@ -118,6 +140,12 @@ class _ProfilePage1State extends State<ProfilePage1> {
             controller: _userNameController,
             keyboardType: TextInputType.text,
             decoration: const InputDecoration(hintText: "Username"),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "username can not be null";
+              }
+              return null;
+            },
           ),
           verticalSpace(10),
           SingleChildScrollView(
@@ -125,7 +153,20 @@ class _ProfilePage1State extends State<ProfilePage1> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                const DateOfBirthPicker(),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 210,
+                  child: TextFormField(
+                    controller: _dateController,
+                    keyboardType: TextInputType.datetime,
+                    decoration: const InputDecoration(hintText: "DD/MM/YYYY"),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "fill in date of birth";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 horizontalSpace(10),
                 SelectableGenderContainer(
                   text: "Male",
@@ -309,20 +350,9 @@ class _ProfilePage1State extends State<ProfilePage1> {
           verticalSpace(35),
           WeDateButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ProfilePage2(
-                    selectedBodyType: selectedBodyType,
-                    selectedGender: selectedGender,
-                    selectedHeightUnit: selectedHeightUnit,
-                    selectedInterest: selectedInterest,
-                    username: _userNameController.value.text,
-                    heightValue: heightValue,
-                    profileImagePath: xfile?.path,
-                  ),
-                ),
-              );
+              if (_formKey.currentState!.validate()) {
+                _handleContinue();
+              }
             },
             paddingTop: 15,
             paddingBottom: 15,

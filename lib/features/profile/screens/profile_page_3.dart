@@ -23,6 +23,7 @@ class ProfilePage3 extends StatefulWidget {
   final String username;
   final double heightValue;
   final String? profileImagePath;
+  final String date;
 
   const ProfilePage3({
     required this.heightValue,
@@ -37,6 +38,7 @@ class ProfilePage3 extends StatefulWidget {
     required this.selectedWorkout,
     required this.username,
     required this.profileImagePath,
+    required this.date,
     Key? key,
   }) : super(key: key);
 
@@ -46,6 +48,30 @@ class ProfilePage3 extends StatefulWidget {
 
 class _ProfilePage3State extends State<ProfilePage3> {
   Set<String> selectedInterests = {};
+
+  void _handleContinue() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ProfilePage4(
+          selectedReligion: widget.selectedReligion,
+          selectedLookingFor: widget.selectedLookingFor,
+          selectedLifestyleChoices: widget.selectedLifestyleChoices,
+          selectedDrinking: widget.selectedDrinking,
+          selectedInterests: selectedInterests,
+          selectedWorkout: widget.selectedWorkout,
+          selectedGender: widget.selectedGender,
+          selectedInterest: widget.selectedInterest,
+          selectedBodyType: widget.selectedBodyType,
+          selectedHeightUnit: widget.selectedHeightUnit,
+          username: widget.username,
+          heightValue: widget.heightValue,
+          profileImagePath: widget.profileImagePath,
+          date: widget.date,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,28 +177,7 @@ class _ProfilePage3State extends State<ProfilePage3> {
             ),
             verticalSpace(150),
             WeDateButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => ProfilePage4(
-                      selectedReligion: widget.selectedReligion,
-                      selectedLookingFor: widget.selectedLookingFor,
-                      selectedLifestyleChoices: widget.selectedLifestyleChoices,
-                      selectedDrinking: widget.selectedDrinking,
-                      selectedInterests: selectedInterests,
-                      selectedWorkout: widget.selectedWorkout,
-                      selectedGender: widget.selectedGender,
-                      selectedInterest: widget.selectedInterest,
-                      selectedBodyType: widget.selectedBodyType,
-                      selectedHeightUnit: widget.selectedHeightUnit,
-                      username: widget.username,
-                      heightValue: widget.heightValue,
-                      profileImagePath: widget.profileImagePath,
-                    ),
-                  ),
-                );
-              },
+              onPressed: _handleContinue,
               paddingTop: 15,
               paddingBottom: 15,
               buttonStyle: ButtonStyle(

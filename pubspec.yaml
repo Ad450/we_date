@@ -38,6 +38,7 @@ dependencies:
   future_progress_dialog: ^0.2.1
   fluttertoast: ^8.2.2
   simple_fontellico_progress_dialog: ^0.3.0
+  calender_picker: ^2.0.1
 
 dev_dependencies:
   flutter_test:

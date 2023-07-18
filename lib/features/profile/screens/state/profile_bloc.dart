@@ -28,6 +28,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       profileImagePath: event.profileImagePath,
       publicPhotosPaths: event.publicPhotosPaths,
       privatePhotosPaths: event.privatePhotosPaths,
+      date: event.date,
     ));
     result.fold(
       (l) => emit(ProfileState.updateProfileError(l.message)),

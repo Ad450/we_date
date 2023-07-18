@@ -20,6 +20,7 @@ abstract class ProfileRemoteDatasource {
     required Set<String> publicPhotosPaths,
     required Set<String> privatePhotosPaths,
     required Set<String> selectedInterests,
+    required String date,
   });
 }
 
@@ -45,6 +46,7 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
     required Set<String> publicPhotosPaths,
     required Set<String> privatePhotosPaths,
     required Set<String> selectedInterests,
+    required String date,
   }) async {
     try {
       final uid = FirebaseAuth.instance.currentUser!.uid;
@@ -68,6 +70,7 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
           "profileImagePath": profileImagePath,
           "publicPhotosPaths": publicPhotosPaths,
           "privatePhotosPaths": privatePhotosPaths,
+          "date": date,
         },
       );
     } on DbFailure catch (e) {

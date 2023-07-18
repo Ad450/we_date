@@ -15,5 +15,6 @@ abstract class ProfileRepository {
     required Set<String> publicPhotosPaths,
     required Set<String> privatePhotosPaths,
     required Set<String> selectedInterests,
+    required String date,
   });
 }

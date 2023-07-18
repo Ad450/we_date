@@ -29,6 +29,7 @@ class ProfilePage4 extends StatefulWidget {
   final String username;
   final double heightValue;
   final String? profileImagePath;
+  final String date;
 
   const ProfilePage4(
       {required this.heightValue,
@@ -44,6 +45,7 @@ class ProfilePage4 extends StatefulWidget {
       required this.username,
       required this.selectedInterests,
       required this.profileImagePath,
+      required this.date,
       Key? key})
       : super(key: key);
 
@@ -78,25 +80,30 @@ class _ProfilePage4State extends State<ProfilePage4> {
 
   void _handleUpdateProfie() {
     if (mounted) {
-      context.read<ProfileBloc>().add(
-            UpdateProfileEvent(
-              heightValue: widget.heightValue,
-              selectedInterest: widget.selectedInterest,
-              selectedHeightUnit: widget.selectedHeightUnit,
-              selectedGender: widget.selectedGender,
-              selectedBodyType: widget.selectedBodyType,
-              selectedDrinking: widget.selectedDrinking,
-              selectedLifestyleChoices: widget.selectedLifestyleChoices,
-              selectedLookingFor: widget.selectedLookingFor,
-              selectedReligion: widget.selectedReligion,
-              selectedWorkout: widget.selectedWorkout,
-              username: widget.username,
-              selectedInterests: widget.selectedInterests,
-              profileImagePath: widget.profileImagePath,
-              publicPhotosPaths: publicPhotosPaths,
-              privatePhotosPaths: privatePhotosPaths,
-            ),
-          );
+      if (publicPhotosPaths.length >= 3 && privatePhotosPaths.length >= 3) {
+        context.read<ProfileBloc>().add(
+              UpdateProfileEvent(
+                heightValue: widget.heightValue,
+                selectedInterest: widget.selectedInterest,
+                selectedHeightUnit: widget.selectedHeightUnit,
+                selectedGender: widget.selectedGender,
+                selectedBodyType: widget.selectedBodyType,
+                selectedDrinking: widget.selectedDrinking,
+                selectedLifestyleChoices: widget.selectedLifestyleChoices,
+                selectedLookingFor: widget.selectedLookingFor,
+                selectedReligion: widget.selectedReligion,
+                selectedWorkout: widget.selectedWorkout,
+                username: widget.username,
+                selectedInterests: widget.selectedInterests,
+                profileImagePath: widget.profileImagePath,
+                publicPhotosPaths: publicPhotosPaths,
+                privatePhotosPaths: privatePhotosPaths,
+                date: widget.date,
+              ),
+            );
+      } else {
+        showToast("incomplete public or private photos");
+      }
     }
   }
 

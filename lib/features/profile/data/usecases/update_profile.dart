@@ -27,6 +27,7 @@ class UpdateProfile implements Usecase<VoidType, UpdateProfileParam> {
         profileImagePath: param.profileImagePath,
         publicPhotosPaths: param.publicPhotosPaths,
         privatePhotosPaths: param.privatePhotosPaths,
+        date: param.date,
       );
       return const Right(VoidType());
     } on NetworkFailure catch (e) {
@@ -51,6 +52,7 @@ class UpdateProfileParam {
   final String? profileImagePath;
   final Set<String> publicPhotosPaths;
   final Set<String> privatePhotosPaths;
+  final String date;
 
   UpdateProfileParam({
     required this.heightValue,
@@ -68,5 +70,6 @@ class UpdateProfileParam {
     required this.profileImagePath,
     required this.publicPhotosPaths,
     required this.privatePhotosPaths,
+    required this.date,
   });
 }

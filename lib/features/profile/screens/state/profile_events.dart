@@ -16,6 +16,7 @@ class UpdateProfileEvent extends ProfileEvent {
   final String? profileImagePath;
   final Set<String> publicPhotosPaths;
   final Set<String> privatePhotosPaths;
+  final String date;
 
   UpdateProfileEvent({
     required this.heightValue,
@@ -33,5 +34,6 @@ class UpdateProfileEvent extends ProfileEvent {
     required this.profileImagePath,
     required this.publicPhotosPaths,
     required this.privatePhotosPaths,
+    required this.date,
   });
 }
